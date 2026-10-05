@@ -129,7 +129,7 @@ This project deploys using GitHub Actions, so a `CNAME` file in the source or ge
 - Only the first homepage cover and the first gallery image on each project page have high loading priority. Other images load lazily and have explicit dimensions to avoid layout jumps. The modal cover uses the same optimized asset as the gallery and loads lazily when opened.
 - Generated images are cached locally to speed up repeat builds.
 - Publishing fails for missing images, missing alt text, missing project metadata, draft projects, absent contact details, image files over 2 MB, or a page's HTML/CSS/JS over 100 KB.
-- Pages share optimized image assets and one stylesheet. Smooth scrolling respects reduced motion.
+- Pages share optimized image assets and one stylesheet. The build adds a version derived from the stylesheet contents to its URL, so browsers fetch updated styling after publishing and reuse it while unchanged. Smooth scrolling respects reduced motion.
 - Inspiration thumbnails are optimized locally and load only on hover or keyboard focus. Touch users can open the video directly; no YouTube player is embedded.
 
 ## Import notes

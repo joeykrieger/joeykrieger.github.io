@@ -261,6 +261,7 @@ def build(publish=False):
         "CONTACT": "".join(contacts),
     })
     common = {
+        "STYLE_VERSION": hashlib.sha256((ROOT / "assets" / "styles.css").read_bytes()).hexdigest()[:12],
         "RAW_NAME": site["name"], "SITE_URL": site.get("url", ""), "SITE_DRAFT": site["draft"],
         "NAME": text(site["name"]), "YEAR": str(date.today().year), "CONTACT_SECTION": contact_section,
         "ROBOTS": '<meta name="robots" content="noindex, nofollow">' if site["draft"] else "",
