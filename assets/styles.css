@@ -23,8 +23,9 @@ h1, h2, h3, p, figure { margin: 0; }
 [hidden] { display: none !important; }
 .skip-link { position: fixed; left: 1rem; top: -6rem; padding: .75rem 1rem; z-index: 10; background: var(--ink); color: white; }
 .skip-link:focus { top: 1rem; }
-.site-header { position: fixed; top: max(1rem, env(safe-area-inset-top)); right: var(--gutter); z-index: 6; }
+.site-header { position: fixed; top: max(1rem, env(safe-area-inset-top)); left: var(--gutter); right: var(--gutter); z-index: 6; }
 .site-header nav { display: flex; gap: .3rem; }
+.header-work-link { margin-right: auto; }
 .header-nav-link { display: block; padding: .6rem .8rem; border-radius: 2px; background: rgb(247 247 247 / 80%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: 1.125rem; font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
 .header-nav-link:hover { background: var(--paper); text-decoration: none; }
 .intro, .work-section { margin-inline: var(--gutter); }

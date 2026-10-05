@@ -54,6 +54,9 @@ def validate(data, publish):
     site = data["site"]
     for field in ("name", "role", "intro"):
         require(isinstance(site.get(field), str) and site[field].strip(), f"site.{field} is required.")
+    if "share_title" in site:
+        require(isinstance(site["share_title"], str) and site["share_title"].strip(),
+                "site.share_title must contain text.")
     if "contact_heading" in site:
         require(isinstance(site["contact_heading"], str) and site["contact_heading"].strip(),
                 "site.contact_heading must contain text.")
@@ -223,6 +226,8 @@ def project_page(project, previous, following, common):
         "GALLERY": gallery_html(project), "STORY": text(project["description"]),
         "STORY_IMAGE": image_html(project["cover"], sizes="(max-width: 760px) 85vw, 800px", prefix="../../"),
         "MOTION": motion_link, "PROJECT_NAVIGATION": navigation,
+        "SOCIAL_META": social_metadata(common["SITE_URL"], common["RAW_NAME"], project["title"],
+                                       project["overview"], common["SHARE_IMAGE"], f'projects/{project["slug"]}/'),
     }
     values["ROBOTS"] = '<meta name="robots" content="noindex, nofollow">' if project["draft"] or common["SITE_DRAFT"] else ""
     return render("project.html", values)
@@ -232,6 +237,26 @@ def canonical(site_url, path=""):
     if not site_url:
         return ""
     return f'<link rel="canonical" href="{text(urljoin(site_url.rstrip("/") + "/", path))}">'
+
+
+def social_metadata(site_url, site_name, title, description, image_name, path=""):
+    if not site_url:
+        return ""
+    base = site_url.rstrip("/") + "/"
+    image_url = urljoin(base, image_name)
+    image_alt = "Graphic Designer and joeykrieger.me on an orange background"
+    properties = {
+        "og:title": title, "og:site_name": site_name, "og:type": "website",
+        "og:url": urljoin(base, path), "og:description": description,
+        "og:image": image_url, "og:image:type": "image/png",
+        "og:image:width": "1200", "og:image:height": "630", "og:image:alt": image_alt,
+    }
+    tags = [f'<meta property="{key}" content="{text(value)}">' for key, value in properties.items()]
+    for key, value in {"twitter:card": "summary_large_image", "twitter:title": title,
+                       "twitter:description": description, "twitter:image": image_url,
+                       "twitter:image:alt": image_alt}.items():
+        tags.append(f'<meta name="{key}" content="{text(value)}">')
+    return "\n  ".join(tags)
 
 
 def render(template_name, values):
@@ -249,6 +274,7 @@ def build(publish=False):
     OUT.mkdir()
     site = data["site"]
     projects = data["projects"]
+    share_image_name = "share-preview-" + hashlib.sha256((ROOT / "assets" / "share-preview.png").read_bytes()).hexdigest()[:12] + ".png"
     contacts = []
     if site.get("email"):
         contacts.append(f'<a class="email-link" href="mailto:{text(site["email"])}">{text(site["email"])}</a>')
@@ -262,6 +288,9 @@ def build(publish=False):
     })
     common = {
         "STYLE_VERSION": hashlib.sha256((ROOT / "assets" / "styles.css").read_bytes()).hexdigest()[:12],
+        "CV_VERSION": hashlib.sha256((ROOT / "assets" / "Joey_Krieger_GraphicDesigner.pdf").read_bytes()).hexdigest()[:12],
+        "ICON_VERSION": hashlib.sha256((ROOT / "assets" / "favicon.svg").read_bytes()).hexdigest()[:12],
+        "SHARE_IMAGE": share_image_name,
         "RAW_NAME": site["name"], "SITE_URL": site.get("url", ""), "SITE_DRAFT": site["draft"],
         "NAME": text(site["name"]), "YEAR": str(date.today().year), "CONTACT_SECTION": contact_section,
         "ROBOTS": '<meta name="robots" content="noindex, nofollow">' if site["draft"] else "",
@@ -270,6 +299,8 @@ def build(publish=False):
         "TITLE": text(f'{site["name"]} — {site["role"]}'),
         "DESCRIPTION": text(site["intro"]),
         "CANONICAL": canonical(site.get("url", "")), "BIO": bio_html(site["bio"]),
+        "SOCIAL_META": social_metadata(site.get("url", ""), site["name"], site.get("share_title", site["role"]),
+                                       site["intro"], share_image_name),
         "PROJECT_COUNT": f"{len(projects):02d}",
         "PROJECTS": "".join(project_card(p, eager=i == 0) for i, p in enumerate(projects)),
         "DRAFT_BADGE": '<span class="draft-badge">Portfolio draft · artwork pending</span>' if site["draft"] else ""
@@ -281,8 +312,9 @@ def build(publish=False):
         previous = projects[(index - 1) % len(projects)]
         following = projects[(index + 1) % len(projects)]
         (dest / "index.html").write_text(project_page(project, previous, following, common))
-    for asset in ("styles.css", "site.js", "project.js", "favicon.svg"):
+    for asset in ("styles.css", "site.js", "project.js", "favicon.svg", "favicon.png", "apple-touch-icon.png", "Joey_Krieger_GraphicDesigner.pdf"):
         shutil.copyfile(ROOT / "assets" / asset, OUT / asset)
+    shutil.copyfile(ROOT / "assets" / "share-preview.png", OUT / share_image_name)
     (OUT / ".nojekyll").touch()
     style_bytes = (OUT / "styles.css").stat().st_size
     shell_bytes = (OUT / "index.html").stat().st_size + style_bytes + (OUT / "site.js").stat().st_size

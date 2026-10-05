@@ -27,6 +27,8 @@ You can say things like:
 
 Codex edits `content/portfolio.json`, adds images under `assets/originals/`, rebuilds the site locally, and checks the result. Review the local preview first. After each finished update, Codex asks whether to push it to GitHub; that update goes live only after your explicit approval. Earlier publishing approvals do not authorize later updates. The `--publish` build flag validates the files locally and does not deploy them.
 
+After an approved push succeeds, Codex reports the push and lets GitHub Pages finish publishing in the background. There is no routine wait for deployment or live-site recheck; request one if a problem appears.
+
 Content updates do not require changes to the page layout. The homepage uses two staggered columns with natural image proportions. Project order follows the content file, down the left column and then down the right; phones show one column. There is no featured carousel.
 
 ## Files that matter
@@ -38,6 +40,9 @@ Content updates do not require changes to the page layout. The homepage uses two
 | `assets/styles.css` | Layout and visual styling |
 | `assets/site.js` | Small cursor-following thumbnail enhancement |
 | `assets/project.js` | Small Read More modal enhancement |
+| `assets/Joey_Krieger_GraphicDesigner.pdf` | Résumé opened by the CV link |
+| `assets/favicon.svg` | Orange-circle favicon, with PNG fallbacks |
+| `assets/share-preview.svg` / `assets/share-preview.png` | Editable source and exported share-preview graphic |
 | `templates/index.html` | Shared page structure |
 | `templates/project.html` | Shared project page structure |
 | `templates/contact.html` | Shared contact footer on every page |
@@ -66,7 +71,11 @@ The landing bio is the `site.bio` list. Each segment has `text`; linked segments
 
 Bio, contact, project client, project video, and project navigation links use your accent `#F15A12` with `#E6530D` on hover or keyboard focus. Project card titles also use the accent when hovered. The main navigation stays black. “Joey Krieger” in the bio links to your LinkedIn profile at `https://www.linkedin.com/in/joek/`, opening in a new tab like the other bio links.
 
-The header contains small Work and Contact links fixed together in the top-right corner. Work returns to the homepage from every project; Contact jumps to the current page's contact footer. The footer uses a bold “Get in touch” heading and a large orange email, with tight spacing in Helvetica Neue. Edit `site.contact_heading` and `site.email` in the content file to change that copy. The email scales down on phones to remain readable without horizontal scrolling. The JK. header logo and About navigation are removed; project pages retain their Selected work and previous/next links.
+The header fixes Work in the top-left corner, with CV beside Contact in the top-right corner on every page. Work returns to the homepage from every project; Contact jumps to the current page's contact footer. CV opens the résumé PDF in a new browser tab. Replace `assets/Joey_Krieger_GraphicDesigner.pdf` with a new PDF of the same name to update the résumé; rebuilding copies it to the website and updates its URL version automatically. The PDF loads only when opened.
+
+The footer uses a bold “Get in touch” heading and a large orange email, with tight spacing in Helvetica Neue. Edit `site.contact_heading` and `site.email` in the content file to change that copy. The email scales down on phones to remain readable without horizontal scrolling. The JK. header logo and About navigation are removed; project pages retain their Selected work and previous/next links.
+
+The favicon is a plain `#F15A12` circle. A 32px PNG fallback and 180px Apple touch icon also use that circle. Every page provides Open Graph and social-card metadata in its static HTML, using the same orange 1200 × 630 PNG with “Graphic Designer” and “joeykrieger.me.” The homepage's preview title is editable as `site.share_title`; project links keep their project titles. The build versions the icons and share-image URL when their contents change. Edit the share SVG and export the PNG together when changing the artwork; its Helvetica Neue lettering is rendered into the image, and no font file is distributed. Preview apps choose the final card layout; the real Messages preview can be checked after publishing.
 
 The bio uses responsive type (about 42px at a 1280px desktop width, 26px on a phone), `-0.03em` letter spacing (−30 tracking), and 95% line height. Inspiration previews are image-only, 100px square, and follow the mouse while it is over a video link. Their position is updated once per animation frame and kept inside the viewport. Keyboard focus anchors the image beside the link; Escape dismisses it. The build creates 200px WebP thumbnails for sharp previews without loading the full-size originals.
 

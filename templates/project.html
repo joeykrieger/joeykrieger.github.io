@@ -6,8 +6,11 @@
   <meta name="description" content="@@DESCRIPTION@@">
   @@ROBOTS@@
   @@CANONICAL@@
+  @@SOCIAL_META@@
   <title>@@TITLE@@</title>
-  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon.png?v=@@ICON_VERSION@@">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../favicon.svg?v=@@ICON_VERSION@@">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png?v=@@ICON_VERSION@@">
   <link rel="stylesheet" href="../../styles.css?v=@@STYLE_VERSION@@">
   <script src="../../project.js" defer></script>
 </head>
@@ -15,7 +18,8 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <nav aria-label="Main navigation">
-      <a class="header-nav-link" href="../../">Work</a>
+      <a class="header-nav-link header-work-link" href="../../">Work</a>
+      <a class="header-nav-link" href="../../Joey_Krieger_GraphicDesigner.pdf?v=@@CV_VERSION@@" target="_blank" rel="noopener noreferrer" aria-label="CV (PDF, opens in a new tab)">CV</a>
       <a class="header-nav-link" href="#contact">Contact</a>
     </nav>
   </header>
