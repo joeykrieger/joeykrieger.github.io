@@ -10,11 +10,7 @@ GitHub stores your website files and keeps a history of changes. A **repository*
 
 You do not need to learn coding to maintain this portfolio. Tell Codex what to change, provide your new artwork, review the preview, and have Codex publish the update.
 
-The one-time setup is:
-
-1. Create a free account at https://github.com/signup and choose a username.
-2. Sign in to GitHub in your browser and tell Codex your username.
-3. Publish this folder to a public portfolio repository, then enable GitHub Pages. Codex can guide the browser setup; GitHub Desktop is another option for uploading the folder.
+The one-time GitHub setup is complete. Your account username is `joeykrieger`; `JuicyJoeOG` is your display name. Your website files and change history are in [the portfolio repository](https://github.com/joeykrieger/joeykrieger.github.io). Approved updates pushed to its `main` branch automatically build and publish through GitHub Pages.
 
 No password or access token needs to be pasted into this chat. Use GitHub's own sign-in screen.
 
@@ -97,7 +93,7 @@ Publishing through this chat still needs access to the GitHub account and the de
 
 ## Connecting joeykrieger.me
 
-The domain is registered through Squarespace. Keep it there. First publish the portfolio and verify its GitHub Pages link works. Then connect the existing domain:
+The portfolio's domain is `joeykrieger.me`, registered through Squarespace. The domain ownership verification and website DNS records below were configured on October 4, 2026. Keep the domain registered through Squarespace and continue renewing it there; GitHub Pages hosts the website. The following steps document the connection for future maintenance:
 
 1. In your GitHub **account Settings → Pages → Add a domain**, enter `joeykrieger.me`. GitHub gives you a TXT verification record. Add that exact record at your domain provider, return to GitHub, and click Verify. Keep the TXT record afterward. [GitHub domain verification instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages).
 2. In the portfolio **repository Settings → Pages → Custom domain**, enter `joeykrieger.me` and Save. Do this before pointing the domain's website records to GitHub.
