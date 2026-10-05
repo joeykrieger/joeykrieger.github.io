@@ -10,7 +10,14 @@
     "draft": false,
     "bio": [
       {
-        "text": "Hello! I'm Joey Krieger, a designer and illustrator based in Brooklyn, currently leading graphics for "
+        "text": "Hello! I'm "
+      },
+      {
+        "text": "Joey Krieger",
+        "url": "https://www.linkedin.com/in/joek/"
+      },
+      {
+        "text": ", a designer and illustrator based in Brooklyn, currently leading graphics for "
       },
       {
         "text": "Nike ACG",
