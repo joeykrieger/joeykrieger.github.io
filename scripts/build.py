@@ -244,7 +244,7 @@ def social_metadata(site_url, site_name, title, description, image_name, path=""
         return ""
     base = site_url.rstrip("/") + "/"
     image_url = urljoin(base, image_name)
-    image_alt = "IF A BAGEL CAN HAVE EVERYTHING SO CAN YOU. — centered orange lettering on white"
+    image_alt = "IF A BAGEL CAN HAVE EVERYTHING, SO CAN YOU. — centered orange lettering on white"
     properties = {
         "og:title": title, "og:site_name": site_name, "og:type": "website",
         "og:url": urljoin(base, path), "og:description": description,
