@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="@@DESCRIPTION@@">
+  @@ROBOTS@@
+  @@CANONICAL@@
+  <title>@@TITLE@@</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="../../project.js" defer></script>
+</head>
+<body class="project-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="top">
+    <a class="wordmark" href="../../" aria-label="@@NAME@@ home">@@WORDMARK@@</a>
+    <nav aria-label="Main navigation">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+    </nav>
+    <a class="contact-nav" href="../../#contact">Contact</a>
+  </header>
+  <main id="main" class="project-main">
+    <a class="back-link" href="../../#work">← Selected work</a>
+    <div class="project-intro">
+      <h1>@@PROJECT_TITLE@@</h1>
+      <p class="project-overview">@@OVERVIEW@@</p>
+      <details class="project-details">
+        <summary class="project-read-more">Read More <span aria-hidden="true">+</span></summary>
+        <section class="project-story" aria-labelledby="story-title">
+          <h2 class="section-label" id="story-title">Project overview</h2>
+          <div><p>@@STORY@@</p>@@MOTION@@</div>
+        </section>
+      </details>
+    </div>
+    <dl class="project-facts">
+      <div><dt>Client</dt><dd>@@CLIENT@@</dd></div>
+      <div><dt>Year</dt><dd>@@PROJECT_YEAR@@</dd></div>
+      <div><dt>Role</dt><dd><ul>@@ROLES@@</ul></dd></div>
+    </dl>
+    <section class="project-gallery" aria-label="@@PROJECT_TITLE@@ artwork">@@GALLERY@@</section>
+    <nav class="project-navigation" aria-label="More projects">@@PROJECT_NAVIGATION@@</nav>
+  </main>
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+    <div class="project-dialog-card">
+      <p class="project-dialog-label">@@PROJECT_TITLE@@</p>
+      <h2 id="dialog-title">@@OVERVIEW@@</h2>
+      <figure class="project-dialog-image">@@STORY_IMAGE@@</figure>
+      <div class="project-dialog-story"></div>
+    </div>
+    <button class="project-dialog-close" type="button" aria-label="Close project overview" autofocus>
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="m5 5 14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </dialog>
+  <footer class="site-footer"><span>© @@YEAR@@ @@NAME@@</span><a href="../../#work">All projects</a><a href="#top">Back to top</a></footer>
+</body>
+</html>

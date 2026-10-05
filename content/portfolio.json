@@ -1,0 +1,374 @@
+{
+  "site": {
+    "name": "Joey Krieger",
+    "wordmark": "JK.",
+    "role": "Graphic designer & illustrator",
+    "intro": "Joey Krieger is a designer and illustrator based in Brooklyn, currently leading graphics for Nike ACG Kids at Haddad Brands.",
+    "email": "jkriegerdesign@gmail.com",
+    "links": [],
+    "url": "https://joeykrieger.github.io",
+    "draft": false,
+    "bio": [
+      {
+        "text": "Hello! I'm Joey Krieger, a designer and illustrator based in Brooklyn, currently leading graphics for "
+      },
+      {
+        "text": "Nike ACG Kids",
+        "url": "https://www.nike.com/acg"
+      },
+      {
+        "text": " @ Haddad Brands. I get my inspiration from music like "
+      },
+      {
+        "text": "Fatboy Slim's Rockafeller Skank",
+        "url": "https://www.youtube.com/watch?v=FMrIy9zm7QY",
+        "preview": {
+          "file": "inspiration/rockafeller-skank.jpg",
+          "alt": "Thumbnail from Fatboy Slim’s Rockafeller Skank music video"
+        }
+      },
+      {
+        "text": ", movies like "
+      },
+      {
+        "text": "Boogie Nights",
+        "url": "https://www.youtube.com/watch?v=ku633lZIkZc",
+        "preview": {
+          "file": "inspiration/boogie-nights.jpg",
+          "alt": "Thumbnail from the Boogie Nights scene"
+        }
+      },
+      {
+        "text": " and video games like "
+      },
+      {
+        "text": "BioShock",
+        "url": "https://www.youtube.com/watch?v=_KVfPMSK8hA",
+        "preview": {
+          "file": "inspiration/bioshock.jpg",
+          "alt": "Thumbnail from the BioShock Remastered anniversary trailer"
+        }
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  "projects": [
+    {
+      "slug": "warren-lotas-jewelry",
+      "title": "Warren Lotas — Jewelry",
+      "description": "I led the development of a rodeo-style belt buckle in sterling silver, with gold-plated details and blue enamel accents, and a sterling silver money clip for two separate Warren Lotas releases. Working from the creative director's concept sketches, I refined the final illustrations and created tech packs to guide model makers and jewelry vendors from 2D artwork through 3D development and production.",
+      "cover": {
+        "file": "jewelry/01.jpg",
+        "alt": "Warren Lotas rodeo-style silver belt buckle with gold details and blue enamel"
+      },
+      "images": [
+        {
+          "file": "jewelry/02.jpg",
+          "alt": "Close-up of engraved gold and silver details on the Warren Lotas belt buckle",
+          "span": "half"
+        },
+        {
+          "file": "jewelry/03.jpg",
+          "alt": "Warren Lotas belt buckle photographed in the model's hands",
+          "span": "half"
+        },
+        {
+          "file": "jewelry/04.jpg",
+          "alt": "Sterling silver Warren Lotas money clip photographed beside a twenty-dollar bill",
+          "span": "full"
+        }
+      ],
+      "source": "https://readymag.website/u2408382941/4498950/wljewelry/",
+      "year": "2024",
+      "draft": false,
+      "client": "Warren Lotas",
+      "client_url": "https://www.instagram.com/warrenlotas/?hl=en",
+      "overview": "Illustration and product development for sterling silver jewelry.",
+      "roles": [
+        "Product development",
+        "Illustration"
+      ]
+    },
+    {
+      "slug": "the-brink-of",
+      "title": "The Brink Of",
+      "description": "As lead designer for The Brink Of, a feature film about a music duo navigating their creative and romantic relationship, I created a visual identity for the film and the real-life band. Drawing on the music, film footage, and 1970s bands like Fleetwood Mac, I developed film posters, single artwork, and visual assets for streaming services, sales, PR, marketing, social media, and touring.",
+      "cover": {
+        "file": "brink/01.jpg",
+        "alt": "Orange and yellow The Brink Of film poster with two musicians and hand-drawn title lettering",
+        "span": "half"
+      },
+      "images": [
+        {
+          "file": "brink/02.jpg",
+          "alt": "The Brink Of film artwork featuring a theater marquee and the lead musicians",
+          "span": "half"
+        },
+        {
+          "file": "brink/03.jpg",
+          "alt": "The Brink Of promotional graphic with film synopsis and soundtrack artwork",
+          "span": "full"
+        },
+        {
+          "file": "brink/04.png",
+          "alt": "The Brink Of Something to Hold on To single artwork",
+          "span": "half"
+        },
+        {
+          "file": "brink/05.png",
+          "alt": "The Brink Of Sunday single artwork",
+          "span": "half"
+        }
+      ],
+      "motion": {
+        "label": "View title animation",
+        "url": "https://vimeo.com/892105036"
+      },
+      "source": "https://readymag.website/u2408382941/4498950/thebrinkof/",
+      "year": "2022",
+      "draft": false,
+      "client": "Respect Films",
+      "client_url": "https://www.respectfilms.com/",
+      "overview": "A visual identity for a music romance film and its real-life band.",
+      "roles": [
+        "Branding",
+        "Art direction"
+      ]
+    },
+    {
+      "slug": "wl-trophy-room",
+      "title": "WL Trophy Room",
+      "description": "For Warren Lotas collaborations with the NBA, NFL, and NCAA/CLC, I conceptualized and illustrated team graphics and apparel, reimagining mascots and logos through the brand's visual language. The work included detailed hoodie and T-shirt illustrations alongside long-sleeve and shorts graphics, with pieces sold as stadium exclusives and showcased at the opening of the official NBA store in New York.",
+      "cover": {
+        "file": "home/03.jpg",
+        "alt": "Black New York Knicks Warren Lotas T-shirt with illustrated basketball graphic on an orange background"
+      },
+      "images": [
+        {
+          "file": "sports/01.jpg",
+          "alt": "Blue Philadelphia Warren Lotas hoodie with team-inspired illustrated graphic",
+          "span": "full"
+        },
+        {
+          "file": "sports/02.jpg",
+          "alt": "Red and black Georgia sports illustration by Joey Krieger for Warren Lotas",
+          "span": "half"
+        },
+        {
+          "file": "sports/03.jpg",
+          "alt": "Blue Chargers illustration with stylized team mascot for Warren Lotas",
+          "span": "half"
+        },
+        {
+          "file": "sports/04.png",
+          "alt": "Yellow Warren Lotas basketball shorts with illustrated side panels",
+          "span": "half"
+        },
+        {
+          "file": "sports/05.png",
+          "alt": "Pink Warren Lotas basketball shorts with illustrated side panels",
+          "span": "half"
+        },
+        {
+          "file": "sports/06.png",
+          "alt": "Red Warren Lotas basketball shorts with illustrated side panels",
+          "span": "half"
+        },
+        {
+          "file": "sports/07.png",
+          "alt": "Purple Warren Lotas basketball shorts with illustrated side panels",
+          "span": "half"
+        },
+        {
+          "file": "sports/08.png",
+          "alt": "Black Warren Lotas basketball shorts with red illustrated side panels",
+          "span": "half"
+        },
+        {
+          "file": "sports/09.png",
+          "alt": "Blue Warren Lotas basketball shorts with yellow illustrated side panels",
+          "span": "half"
+        },
+        {
+          "file": "sports/10.jpg",
+          "alt": "Denver Nuggets illustrated apparel graphic for Warren Lotas",
+          "span": "half"
+        },
+        {
+          "file": "sports/11.jpg",
+          "alt": "Seattle illustrated apparel graphic for Warren Lotas",
+          "span": "half"
+        }
+      ],
+      "source": "https://readymag.website/u2408382941/4498950/wlsports/",
+      "year": "2023",
+      "draft": false,
+      "client": "Warren Lotas",
+      "client_url": "https://www.instagram.com/warrenlotas/?hl=en",
+      "overview": "Team graphics and apparel through the Warren Lotas lens.",
+      "roles": [
+        "Illustration",
+        "Art direction"
+      ]
+    },
+    {
+      "slug": "wl-western-pulp-drop",
+      "title": "WL Western Pulp Drop",
+      "description": "I led the graphics team and creative direction for a Warren Lotas release exploring the Western Pulps theme. Alongside contributing original illustrations, I curated pieces to form a cohesive collection that carried the brand's punk, biker, and spaghetti western influences into new graphics and apparel.",
+      "cover": {
+        "file": "home/04.jpg",
+        "alt": "Payback illustration showing a skeletal cowboy with two revolvers for Warren Lotas"
+      },
+      "images": [
+        {
+          "file": "western/01.jpg",
+          "alt": "Gray Warren Lotas Payback T-shirt with skeletal cowboy illustration",
+          "span": "half"
+        },
+        {
+          "file": "western/02.jpg",
+          "alt": "Tan Warren Lotas Payback hoodie with skeletal cowboy illustration",
+          "span": "half"
+        },
+        {
+          "file": "western/03.jpg",
+          "alt": "Close-up of the Payback cowboy graphic printed on dark fabric",
+          "span": "full"
+        },
+        {
+          "file": "western/04.png",
+          "alt": "Brown Western Pulps illustrated T-shirt for Warren Lotas",
+          "span": "third"
+        },
+        {
+          "file": "western/05.png",
+          "alt": "Purple Western Pulps illustrated T-shirt for Warren Lotas",
+          "span": "third"
+        },
+        {
+          "file": "western/06.png",
+          "alt": "Black Western Pulps illustrated T-shirt for Warren Lotas",
+          "span": "third"
+        },
+        {
+          "file": "western/07.jpg",
+          "alt": "Black Warren Lotas cap with embroidered Payback lettering",
+          "span": "full"
+        },
+        {
+          "file": "western/08.jpg",
+          "alt": "Blue Warren Lotas pants with illustrated side details",
+          "span": "half"
+        },
+        {
+          "file": "western/09.jpg",
+          "alt": "Dark Warren Lotas pants with illustrated side details",
+          "span": "half"
+        }
+      ],
+      "source": "https://readymag.website/u2408382941/4498950/wlwesternpulp/",
+      "year": "2022",
+      "draft": false,
+      "client": "Warren Lotas",
+      "client_url": "https://www.instagram.com/warrenlotas/?hl=en",
+      "overview": "Illustrated apparel inspired by punk, biker, and spaghetti western culture.",
+      "roles": [
+        "Illustration",
+        "Art direction"
+      ]
+    },
+    {
+      "slug": "emo-nite",
+      "title": "Emo Nite",
+      "description": "Emo Nite is a traveling music event celebrating emo music and culture in clubs and theaters across the country. I was commissioned to concept and develop apparel graphics for tour merchandise and the Emo Nite website, creating designs that fit the brand's provocative aesthetic and rebellious spirit.",
+      "cover": {
+        "file": "home/06.jpg",
+        "alt": "Emo Nite illustrated black hoodie held above the audience at a live event"
+      },
+      "images": [
+        {
+          "file": "emo/01.jpg",
+          "alt": "Black Emo Nite hoodie with flaming illustrated graphic",
+          "span": "full"
+        },
+        {
+          "file": "emo/02.jpg",
+          "alt": "Black Emo Nite pants with red and white flame graphics",
+          "span": "half"
+        },
+        {
+          "file": "emo/03.jpg",
+          "alt": "Side view of Emo Nite pants with illustrated flame details",
+          "span": "half"
+        },
+        {
+          "file": "emo/04.png",
+          "alt": "Black Emo Nite T-shirt featuring This Is Your Brain on Emo Nite graphic",
+          "span": "half"
+        },
+        {
+          "file": "emo/05.png",
+          "alt": "Black Emo Nite T-shirt with provocative illustrated front graphic",
+          "span": "half"
+        }
+      ],
+      "source": "https://readymag.website/u2408382941/4498950/emonite/",
+      "year": "2024",
+      "draft": false,
+      "client": "Emo Nite",
+      "overview": "Illustrated tour merchandise for Emo Nite.",
+      "roles": [
+        "Illustration",
+        "Art direction"
+      ]
+    },
+    {
+      "slug": "village-mice",
+      "title": "Village Mice TCG",
+      "description": "Working with artist Steven Savoca (@fathersteve), I helped shape the brand identity and visual language for Village Mice, a trading card game featuring his mouse artwork. The work spanned translating initial sketches into digital illustrations, formatting the cards, and designing packaging to turn Steve's artistic vision into a collectible card game.",
+      "cover": {
+        "file": "home/07.jpg",
+        "alt": "Colorful Village Mice trading cards and branded packaging featuring Steven Savoca's mouse characters"
+      },
+      "images": [
+        {
+          "file": "mice/01.jpg",
+          "alt": "Village Mice foil trading card packs held over grass",
+          "span": "half"
+        },
+        {
+          "file": "mice/02.jpg",
+          "alt": "Blue Village Mice trading card display packaging",
+          "span": "half"
+        },
+        {
+          "file": "mice/03.png",
+          "alt": "Village Mice trading card design featuring a mouse character",
+          "span": "full"
+        },
+        {
+          "file": "mice/04.png",
+          "alt": "Additional Village Mice trading card layout and illustrated mouse artwork",
+          "span": "full"
+        },
+        {
+          "file": "mice/05.png",
+          "alt": "Village Mice collectible card typography and gameplay layout",
+          "span": "full"
+        }
+      ],
+      "source": "https://readymag.website/u2408382941/4498950/villagemice/",
+      "year": "2023",
+      "draft": false,
+      "client": "Father Steve",
+      "client_url": "https://www.instagram.com/fathersteve/?hl=en",
+      "overview": "A visual identity, cards, and packaging for Village Mice.",
+      "roles": [
+        "Branding",
+        "Art direction"
+      ]
+    }
+  ]
+}

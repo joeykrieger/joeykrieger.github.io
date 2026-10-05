@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="@@DESCRIPTION@@">
+  @@ROBOTS@@
+  @@CANONICAL@@
+  <title>@@TITLE@@</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="top">
+    <a class="wordmark" href="#top" aria-label="@@NAME@@ home">@@WORDMARK@@</a>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="contact-nav" href="#contact">Contact</a>
+  </header>
+  <main id="main">
+    <section class="intro" id="about" aria-labelledby="intro-title">
+      <h1 id="intro-title">@@BIO@@</h1>
+    </section>
+    <section class="work-section" id="work" aria-labelledby="work-title">
+      <div class="section-heading"><h2 id="work-title">Selected work</h2><span>@@PROJECT_COUNT@@ projects</span></div>
+      <div class="project-grid">@@PROJECTS@@</div>
+    </section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <p class="section-label">Get in touch</p>
+      <h2 id="contact-title">Let's make<br>something good.</h2>
+      <div class="contact-links">@@CONTACT@@</div>
+    </section>
+  </main>
+  <figure class="inspiration-preview" aria-hidden="true" hidden>
+    <img alt="" width="480" height="360" decoding="async">
+  </figure>
+  <footer class="site-footer"><span>© @@YEAR@@ @@NAME@@</span>@@DRAFT_BADGE@@<a href="#top">Back to top</a></footer>
+</body>
+</html>
