@@ -19,5 +19,37 @@
     "title": "Bioshock Remastered | 15th Anniversary Trailer",
     "source": "https://i.ytimg.com/vi/_KVfPMSK8hA/hqdefault.jpg",
     "bytes": 22974
+  },
+  {
+    "file": "inspiration/outkast.png",
+    "video": "https://www.youtube.com/watch?v=uqhJfjbNuQg&list=RDuqhJfjbNuQg&start_radio=1",
+    "title": "Outkast",
+    "source": "images.png",
+    "source_type": "user-provided image",
+    "bytes": 1184547
+  },
+  {
+    "file": "inspiration/office-space.png",
+    "video": "https://www.youtube.com/watch?v=GyB6ffmXsZo",
+    "title": "Office Space",
+    "source": "Layer 5.png",
+    "source_type": "user-provided image",
+    "bytes": 1170279
+  },
+  {
+    "file": "inspiration/pee-wee-herman.png",
+    "video": "https://www.youtube.com/watch?v=dUWy21bPGh4&list=RDdUWy21bPGh4&start_radio=1",
+    "title": "Pee Wee Herman",
+    "source": "Layer 3.png",
+    "source_type": "user-provided image",
+    "bytes": 1147365
+  },
+  {
+    "file": "inspiration/outkast-duo.png",
+    "video": "https://www.youtube.com/watch?v=uqhJfjbNuQg&list=RDuqhJfjbNuQg&start_radio=1",
+    "title": "Outkast",
+    "source": "Layer 6.png",
+    "source_type": "user-provided image",
+    "bytes": 1317047
   }
 ]

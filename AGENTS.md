@@ -2,6 +2,8 @@
 
 The owner wants a minimal portfolio that stays easy to update through Codex. Preserve that scope as the site evolves.
 
+- Make and verify changes locally first. After each finished update, show the owner a reviewable preview and ask whether to push that update to GitHub. Push or deploy only after the owner explicitly approves that batch; approval of earlier updates is not standing permission to publish later changes.
+
 - Read `README.md` and the current content before editing. The source of truth is `content/portfolio.json`; do not edit generated `dist/` files.
 - Update project content and image lists without changing layout code when possible.
 - Keep the site static. Add dependencies or a framework only when a requested feature needs them.

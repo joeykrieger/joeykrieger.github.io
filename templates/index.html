@@ -11,15 +11,13 @@
   <link rel="stylesheet" href="./styles.css">
   <script src="./site.js" defer></script>
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" id="top">
-    <a class="wordmark" href="#top" aria-label="@@NAME@@ home">@@WORDMARK@@</a>
+  <header class="site-header">
     <nav aria-label="Main navigation">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
+      <a class="header-nav-link" href="./">Work</a>
+      <a class="header-nav-link" href="#contact">Contact</a>
     </nav>
-    <a class="contact-nav" href="#contact">Contact</a>
   </header>
   <main id="main">
     <section class="intro" id="about" aria-labelledby="intro-title">
@@ -29,15 +27,13 @@
       <div class="section-heading"><h2 id="work-title">Selected work</h2><span>@@PROJECT_COUNT@@ projects</span></div>
       <div class="project-grid">@@PROJECTS@@</div>
     </section>
-    <section class="contact-section" id="contact" aria-labelledby="contact-title">
-      <p class="section-label">Get in touch</p>
-      <h2 id="contact-title">Let's make<br>something good.</h2>
-      <div class="contact-links">@@CONTACT@@</div>
-    </section>
   </main>
   <figure class="inspiration-preview" aria-hidden="true" hidden>
-    <img alt="" width="480" height="360" decoding="async">
+    <img alt="" width="200" height="200" decoding="async">
   </figure>
-  <footer class="site-footer"><span>© @@YEAR@@ @@NAME@@</span>@@DRAFT_BADGE@@<a href="#top">Back to top</a></footer>
+  <footer class="site-footer">
+    @@CONTACT_SECTION@@
+    <div class="footer-meta"><span>© @@YEAR@@ @@NAME@@</span>@@DRAFT_BADGE@@<a href="#top">Back to top</a></div>
+  </footer>
 </body>
 </html>

@@ -11,15 +11,13 @@
   <link rel="stylesheet" href="../../styles.css">
   <script src="../../project.js" defer></script>
 </head>
-<body class="project-page">
+<body class="project-page" id="top">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" id="top">
-    <a class="wordmark" href="../../" aria-label="@@NAME@@ home">@@WORDMARK@@</a>
+  <header class="site-header">
     <nav aria-label="Main navigation">
-      <a href="../../#work">Work</a>
-      <a href="../../#about">About</a>
+      <a class="header-nav-link" href="../../">Work</a>
+      <a class="header-nav-link" href="#contact">Contact</a>
     </nav>
-    <a class="contact-nav" href="../../#contact">Contact</a>
   </header>
   <main id="main" class="project-main">
     <a class="back-link" href="../../#work">← Selected work</a>
@@ -53,6 +51,9 @@
       <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="m5 5 14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2"/></svg>
     </button>
   </dialog>
-  <footer class="site-footer"><span>© @@YEAR@@ @@NAME@@</span><a href="../../#work">All projects</a><a href="#top">Back to top</a></footer>
+  <footer class="site-footer">
+    @@CONTACT_SECTION@@
+    <div class="footer-meta"><span>© @@YEAR@@ @@NAME@@</span><a href="../../#work">All projects</a><a href="#top">Back to top</a></div>
+  </footer>
 </body>
 </html>

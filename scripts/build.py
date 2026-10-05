@@ -52,8 +52,11 @@ def source_image(image):
 
 def validate(data, publish):
     site = data["site"]
-    for field in ("name", "wordmark", "role", "intro"):
+    for field in ("name", "role", "intro"):
         require(isinstance(site.get(field), str) and site[field].strip(), f"site.{field} is required.")
+    if "contact_heading" in site:
+        require(isinstance(site["contact_heading"], str) and site["contact_heading"].strip(),
+                "site.contact_heading must contain text.")
     bio = site.get("bio")
     require(isinstance(bio, list) and bio, "site.bio needs at least one text segment.")
     for segment in bio:
@@ -104,9 +107,9 @@ def validate(data, publish):
         require(email or site.get("links"), "Add a real contact email or social link before publishing.")
 
 
-def optimize(image):
+def optimize(image, width_limits=(640, 1280, 1920)):
     path = source_image(image)
-    key = str(path)
+    key = (str(path), tuple(width_limits))
     if key in IMAGE_CACHE:
         return IMAGE_CACHE[key]
     from PIL import Image, ImageCms, ImageOps
@@ -127,7 +130,7 @@ def optimize(image):
         else:
             artwork = artwork.convert("RGBA" if "A" in artwork.getbands() else "RGB")
         width, height = artwork.size
-        widths = sorted({min(width, limit) for limit in (640, 1280, 1920)})
+        widths = sorted({min(width, limit) for limit in width_limits})
         variants = []
         for target_width in widths:
             target_height = max(1, round(height * target_width / width))
@@ -168,7 +171,7 @@ def bio_html(segments):
         preview = segment.get("preview")
         attributes = ""
         if preview:
-            name = optimize(preview)["variants"][0][0]
+            name = optimize(preview, width_limits=(200,))["variants"][0][0]
             attributes = f' data-preview-src="./images/{name}"'
         parts.append(f'<a href="{text(segment["url"])}" target="_blank" rel="noopener noreferrer"'
                      f'{attributes}>{label}</a>')
@@ -253,9 +256,13 @@ def build(publish=False):
         contacts.append(f'<a href="{text(link["url"])}">{text(link["label"])}</a>')
     if not contacts:
         contacts.append('<p class="contact-pending">Contact details coming soon.</p>')
+    contact_section = render("contact.html", {
+        "CONTACT_HEADING": text(site.get("contact_heading", "Get in touch")),
+        "CONTACT": "".join(contacts),
+    })
     common = {
         "RAW_NAME": site["name"], "SITE_URL": site.get("url", ""), "SITE_DRAFT": site["draft"],
-        "NAME": text(site["name"]), "WORDMARK": text(site["wordmark"]), "YEAR": str(date.today().year),
+        "NAME": text(site["name"]), "YEAR": str(date.today().year), "CONTACT_SECTION": contact_section,
         "ROBOTS": '<meta name="robots" content="noindex, nofollow">' if site["draft"] else "",
     }
     values = common | {
@@ -264,7 +271,6 @@ def build(publish=False):
         "CANONICAL": canonical(site.get("url", "")), "BIO": bio_html(site["bio"]),
         "PROJECT_COUNT": f"{len(projects):02d}",
         "PROJECTS": "".join(project_card(p, eager=i == 0) for i, p in enumerate(projects)),
-        "CONTACT": "".join(contacts),
         "DRAFT_BADGE": '<span class="draft-badge">Portfolio draft · artwork pending</span>' if site["draft"] else ""
     }
     (OUT / "index.html").write_text(render("index.html", values))

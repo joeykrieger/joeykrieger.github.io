@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Joey Krieger",
-    "wordmark": "JK.",
     "role": "Graphic designer & illustrator",
-    "intro": "Joey Krieger is a designer and illustrator based in Brooklyn, currently leading graphics for Nike ACG Kids at Haddad Brands.",
+    "intro": "Joey Krieger is a designer and illustrator based in Brooklyn, currently leading graphics for Nike ACG at Haddad Brands.",
     "email": "jkriegerdesign@gmail.com",
+    "contact_heading": "Get in touch",
     "links": [],
     "url": "https://www.joeykrieger.me",
     "draft": false,
@@ -13,40 +13,40 @@
         "text": "Hello! I'm Joey Krieger, a designer and illustrator based in Brooklyn, currently leading graphics for "
       },
       {
-        "text": "Nike ACG Kids",
+        "text": "Nike ACG",
         "url": "https://www.nike.com/acg"
       },
       {
-        "text": " @ Haddad Brands. I get my inspiration from music like "
+        "text": " @ Haddad Brands. I'm inspired by music like "
       },
       {
-        "text": "Fatboy Slim's Rockafeller Skank",
-        "url": "https://www.youtube.com/watch?v=FMrIy9zm7QY",
+        "text": "Outkast",
+        "url": "https://www.youtube.com/watch?v=uqhJfjbNuQg&list=RDuqhJfjbNuQg&start_radio=1",
         "preview": {
-          "file": "inspiration/rockafeller-skank.jpg",
-          "alt": "Thumbnail from Fatboy Slim’s Rockafeller Skank music video"
+          "file": "inspiration/outkast-duo.png",
+          "alt": "Black-and-white Outkast duo portrait supplied by Joey"
         }
       },
       {
         "text": ", movies like "
       },
       {
-        "text": "Boogie Nights",
-        "url": "https://www.youtube.com/watch?v=ku633lZIkZc",
+        "text": "Office Space",
+        "url": "https://www.youtube.com/watch?v=GyB6ffmXsZo",
         "preview": {
-          "file": "inspiration/boogie-nights.jpg",
-          "alt": "Thumbnail from the Boogie Nights scene"
+          "file": "inspiration/office-space.png",
+          "alt": "Black-and-white Office Space still supplied by Joey"
         }
       },
       {
-        "text": " and video games like "
+        "text": " and icons like "
       },
       {
-        "text": "BioShock",
-        "url": "https://www.youtube.com/watch?v=_KVfPMSK8hA",
+        "text": "Pee Wee Herman",
+        "url": "https://www.youtube.com/watch?v=dUWy21bPGh4&list=RDdUWy21bPGh4&start_radio=1",
         "preview": {
-          "file": "inspiration/bioshock.jpg",
-          "alt": "Thumbnail from the BioShock Remastered anniversary trailer"
+          "file": "inspiration/pee-wee-herman.png",
+          "alt": "Black-and-white Pee Wee Herman portrait supplied by Joey"
         }
       },
       {

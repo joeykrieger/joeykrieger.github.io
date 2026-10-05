@@ -25,7 +25,9 @@ You can say things like:
 - “Add a new project called ___ with these pictures and this description.”
 - “Change my bio to ___.”
 
-Codex edits `content/portfolio.json`, adds images under `assets/originals/`, rebuilds the site, and checks the result. Content updates do not require changes to the page layout. The homepage uses two staggered columns with natural image proportions. Project order follows the content file, down the left column and then down the right; phones show one column. There is no featured carousel.
+Codex edits `content/portfolio.json`, adds images under `assets/originals/`, rebuilds the site locally, and checks the result. Review the local preview first. After each finished update, Codex asks whether to push it to GitHub; that update goes live only after your explicit approval. Earlier publishing approvals do not authorize later updates. The `--publish` build flag validates the files locally and does not deploy them.
+
+Content updates do not require changes to the page layout. The homepage uses two staggered columns with natural image proportions. Project order follows the content file, down the left column and then down the right; phones show one column. There is no featured carousel.
 
 ## Files that matter
 
@@ -38,6 +40,7 @@ Codex edits `content/portfolio.json`, adds images under `assets/originals/`, reb
 | `assets/project.js` | Small Read More modal enhancement |
 | `templates/index.html` | Shared page structure |
 | `templates/project.html` | Shared project page structure |
+| `templates/contact.html` | Shared contact footer on every page |
 | `scripts/build.py` | Content validation, image resizing, and HTML generation |
 | `content/source-assets.json` | Import provenance and source URLs |
 
@@ -63,7 +66,9 @@ The landing bio is the `site.bio` list. Each segment has `text`; linked segments
 
 The site uses your accent color `#FF5F15` for bio, contact, and video links, with `#E6530D` on hover or keyboard focus. The main navigation stays black.
 
-The bio uses responsive type (about 42px at a 1280px desktop width, 26px on a phone), `-0.03em` letter spacing (−30 tracking), and 95% line height. Inspiration previews are image-only, 100px wide, and follow the mouse while it is over a video link. Their position is updated once per animation frame and kept inside the viewport. Keyboard focus anchors the image beside the link; Escape dismisses it.
+The header contains small Work and Contact links fixed together in the top-right corner. Work returns to the homepage from every project; Contact jumps to the current page's contact footer. The footer uses a bold “Get in touch” heading and a large orange email, with tight spacing in Helvetica Neue. Edit `site.contact_heading` and `site.email` in the content file to change that copy. The email scales down on phones to remain readable without horizontal scrolling. The JK. header logo and About navigation are removed; project pages retain their Selected work and previous/next links.
+
+The bio uses responsive type (about 42px at a 1280px desktop width, 26px on a phone), `-0.03em` letter spacing (−30 tracking), and 95% line height. Inspiration previews are image-only, 100px square, and follow the mouse while it is over a video link. Their position is updated once per animation frame and kept inside the viewport. Keyboard focus anchors the image beside the link; Escape dismisses it. The build creates 200px WebP thumbnails for sharp previews without loading the full-size originals.
 
 Helvetica Neue is first in the font stack, followed by Helvetica, Arial, and the browser's sans-serif fallback. Visitors with Helvetica Neue installed see it without downloading a font. The macOS system file is not copied into the project. To make the same font available on every device, provide properly licensed webfont files; a Font Book installation alone does not establish web redistribution rights.
 
@@ -133,6 +138,6 @@ Six projects were imported from the Readymag site: The Brink Of, Warren Lotas Je
 
 Fifty source images were saved. The six main projects use a selection of those images; additional homepage graphics remain in `assets/originals/home/` for later updates. The Brink Of cover now uses the larger original poster. Village Mice uses three representative card designs from its original carousel. The Brink Of title animation is linked to Vimeo instead of loading a video player on the page.
 
-The landing bio was replaced with Joey's requested Nike ACG Kids / Haddad Brands role and personal inspirations. The three preview thumbnails come from the exact YouTube videos he selected; their provenance is in `content/inspiration-sources.json`. Mouthwash Studio's artwork and branding were not copied.
+The landing bio uses Joey's requested Nike ACG / Haddad Brands role and personal inspirations: music like Outkast, movies like Office Space, and icons like Pee Wee Herman. Each label opens Joey's selected YouTube link. Preview images use his supplied files: `Layer 6.png` for Outkast, `Layer 5.png` for Office Space, and `Layer 3.png` for Pee Wee Herman. Originals are preserved under `assets/originals/inspiration/`; current and earlier image provenance is in `content/inspiration-sources.json`. Mouthwash Studio's artwork and branding were not copied.
 
 Source portfolio: https://readymag.website/u2408382941/4498950/
