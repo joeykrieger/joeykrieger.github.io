@@ -2,6 +2,8 @@
 
 A minimal portfolio inspired by the spacing, navigation, and large artwork of Mouthwash Studio. The content comes from Joey's public Readymag portfolio. This folder contains the complete source and a generated website in `dist/`.
 
+Published portfolio: [https://www.joeykrieger.me](https://www.joeykrieger.me). GitHub Pages has issued the certificate for this address and HTTPS enforcement is enabled. Share this complete address. The old bare-domain DNS record may remain cached during the initial transition, so `https://joeykrieger.me` can take longer to become available.
+
 ## GitHub, in plain language
 
 GitHub stores your website files and keeps a history of changes. A **repository** is the folder containing the project. That history lets us restore an earlier version if you want to undo a change.
@@ -96,7 +98,7 @@ Publishing through this chat still needs access to the GitHub account and the de
 The portfolio's domain is `joeykrieger.me`, registered through Squarespace. The domain ownership verification and website DNS records below were configured on October 4, 2026. Keep the domain registered through Squarespace and continue renewing it there; GitHub Pages hosts the website. The following steps document the connection for future maintenance:
 
 1. In your GitHub **account Settings → Pages → Add a domain**, enter `joeykrieger.me`. GitHub gives you a TXT verification record. Add that exact record at your domain provider, return to GitHub, and click Verify. Keep the TXT record afterward. [GitHub domain verification instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages).
-2. In the portfolio **repository Settings → Pages → Custom domain**, enter `joeykrieger.me` and Save. Do this before pointing the domain's website records to GitHub.
+2. In the portfolio **repository Settings → Pages → Custom domain**, enter `www.joeykrieger.me` and Save. Do this before pointing the domain's website records to GitHub. The `www` address is the primary website address.
 3. In [Squarespace Domains](https://account.squarespace.com/domains), open `joeykrieger.me`, then **DNS → DNS Settings → Custom Records → Add record**. Add the following website records. The CNAME target has no `https://` or repository name.
 
 | Type | Host / Name | Value |
@@ -109,8 +111,8 @@ The portfolio's domain is `joeykrieger.me`, registered through Squarespace. The 
 
 `@` means the bare domain, `joeykrieger.me`. Review existing records before changing them: replace conflicting website records for `@` or `www`, and preserve email records such as MX, SPF, and DKIM. Use Squarespace's default TTL. A records use the **IP Address** field; CNAME records use **Alias Data**. Squarespace may request your password or 2FA again before saving. [Squarespace DNS instructions](https://support.squarespace.com/hc/en-us/articles/31119879125645-DNS-records-for-web-hosting).
 
-4. Wait for the DNS check in GitHub Pages to pass, then turn on **Enforce HTTPS** when it becomes available. GitHub documents up to 24 hours for DNS propagation and certificate availability. `www.joeykrieger.me` will redirect to the bare domain with these records. [GitHub custom domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
-5. Open `https://joeykrieger.me` and check a project page, Read More, and the client links. Once the domain is live, set `site.url` in the content file to `https://joeykrieger.me` and publish again for canonical links.
+4. Wait for the DNS check in GitHub Pages to pass, then turn on **Enforce HTTPS** when it becomes available. GitHub documents up to 24 hours for DNS propagation and certificate availability. The bare domain redirects to the primary `www` address; HTTPS for the bare domain also needs its own certificate coverage. [GitHub custom domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+5. Open `https://www.joeykrieger.me` and check a project page, Read More, and the client links. Once the domain is live, set `site.url` in the content file to `https://www.joeykrieger.me` and publish again for canonical links.
 
 This project deploys using GitHub Actions, so a `CNAME` file in the source or generated website is not required. Future edits are published by updating the repository's `main` branch.
 
