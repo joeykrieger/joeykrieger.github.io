@@ -6,7 +6,13 @@
     "intro": "Joey Krieger is a designer and illustrator based in Brooklyn, currently leading graphics for Nike ACG at Haddad Brands.",
     "email": "jkriegerdesign@gmail.com",
     "contact_heading": "Get in touch",
-    "links": [],
+    "links": [
+      {
+        "label": "IG",
+        "url": "https://www.instagram.com/virtual.cowboy/",
+        "aria_label": "Instagram — @virtual.cowboy"
+      }
+    ],
     "url": "https://www.joeykrieger.me",
     "draft": false,
     "bio": [
@@ -15,7 +21,12 @@
       },
       {
         "text": "Joey Krieger",
-        "url": "https://www.linkedin.com/in/joek/"
+        "url": "https://www.linkedin.com/in/joek/",
+        "preview": {
+          "file": "profile/joey_profile.png",
+          "alt": "Joey Krieger holding his dog",
+          "placement": "sidebar"
+        }
       },
       {
         "text": ", a designer and illustrator based in Brooklyn, currently leading graphics for "
@@ -100,50 +111,50 @@
       ]
     },
     {
-      "slug": "the-brink-of",
-      "title": "The Brink Of",
-      "description": "As lead designer for The Brink Of, a feature film about a music duo navigating their creative and romantic relationship, I created a visual identity for the film and the real-life band. Drawing on the music, film footage, and 1970s bands like Fleetwood Mac, I developed film posters, single artwork, and visual assets for streaming services, sales, PR, marketing, social media, and touring.",
+      "slug": "emo-nite",
+      "title": "Emo Nite",
+      "description": "Emo Nite is a traveling music event celebrating emo music and culture in clubs and theaters across the country. I was commissioned to concept and develop apparel graphics for tour merchandise and the Emo Nite website, creating designs that fit the brand's provocative aesthetic and rebellious spirit.",
       "cover": {
-        "file": "brink/01.jpg",
-        "alt": "Orange and yellow The Brink Of film poster with two musicians and hand-drawn title lettering",
-        "span": "half"
+        "file": "home/06.jpg",
+        "alt": "Emo Nite illustrated black hoodie held above the audience at a live event"
       },
       "images": [
         {
-          "file": "brink/02.jpg",
-          "alt": "The Brink Of film artwork featuring a theater marquee and the lead musicians",
-          "span": "half"
-        },
-        {
-          "file": "brink/03.jpg",
-          "alt": "The Brink Of promotional graphic with film synopsis and soundtrack artwork",
+          "file": "emo/01.jpg",
+          "alt": "Black Emo Nite hoodie with flaming illustrated graphic",
           "span": "full"
         },
         {
-          "file": "brink/04.png",
-          "alt": "The Brink Of Something to Hold on To single artwork",
+          "file": "emo/02.jpg",
+          "alt": "Black Emo Nite pants with red and white flame graphics",
           "span": "half"
         },
         {
-          "file": "brink/05.png",
-          "alt": "The Brink Of Sunday single artwork",
+          "file": "emo/03.jpg",
+          "alt": "Side view of Emo Nite pants with illustrated flame details",
+          "span": "half"
+        },
+        {
+          "file": "emo/04.png",
+          "alt": "Black Emo Nite T-shirt featuring This Is Your Brain on Emo Nite graphic",
+          "span": "half"
+        },
+        {
+          "file": "emo/05.png",
+          "alt": "Black Emo Nite T-shirt with provocative illustrated front graphic",
           "span": "half"
         }
       ],
-      "motion": {
-        "label": "View title animation",
-        "url": "https://vimeo.com/892105036"
-      },
-      "source": "https://readymag.website/u2408382941/4498950/thebrinkof/",
-      "year": "2022",
+      "source": "https://readymag.website/u2408382941/4498950/emonite/",
+      "year": "2024",
       "draft": false,
-      "client": "Respect Films",
-      "client_url": "https://www.respectfilms.com/",
-      "overview": "A visual identity for a music romance film and its real-life band.",
+      "client": "Emo Nite",
+      "overview": "Illustrated tour merchandise for Emo Nite.",
       "roles": [
-        "Branding",
+        "Illustration",
         "Art direction"
-      ]
+      ],
+      "client_url": "https://emonite.com/"
     },
     {
       "slug": "wl-trophy-room",
@@ -222,6 +233,94 @@
       ]
     },
     {
+      "slug": "village-mice",
+      "title": "Village Mice TCG",
+      "description": "Working with artist Steven Savoca (@fathersteve), I helped shape the brand identity and visual language for Village Mice, a trading card game featuring his mouse artwork. The work spanned translating initial sketches into digital illustrations, formatting the cards, and designing packaging to turn Steve's artistic vision into a collectible card game.",
+      "cover": {
+        "file": "home/07.jpg",
+        "alt": "Colorful Village Mice trading cards and branded packaging featuring Steven Savoca's mouse characters"
+      },
+      "images": [
+        {
+          "file": "mice/01.jpg",
+          "alt": "Village Mice foil trading card packs held over grass",
+          "span": "half"
+        },
+        {
+          "file": "mice/02.jpg",
+          "alt": "Blue Village Mice trading card display packaging",
+          "span": "half"
+        },
+        {
+          "file": "mice/03.png",
+          "alt": "Village Mice trading card design featuring a mouse character",
+          "span": "full"
+        },
+        {
+          "file": "mice/04.png",
+          "alt": "Additional Village Mice trading card layout and illustrated mouse artwork",
+          "span": "full"
+        },
+        {
+          "file": "mice/05.png",
+          "alt": "Village Mice collectible card typography and gameplay layout",
+          "span": "full"
+        }
+      ],
+      "source": "https://readymag.website/u2408382941/4498950/villagemice/",
+      "year": "2023",
+      "draft": false,
+      "client": "Father Steve",
+      "client_url": "https://www.instagram.com/fathersteve/?hl=en",
+      "overview": "A visual identity, cards, and packaging for Village Mice.",
+      "roles": [
+        "Branding",
+        "Art direction"
+      ]
+    },
+    {
+      "slug": "the-brink-of",
+      "title": "The Brink Of",
+      "description": "As lead designer for The Brink Of, a feature film about a music duo navigating their creative and romantic relationship, I created a visual identity for the film and the real-life band. Drawing on the music, film footage, and 1970s bands like Fleetwood Mac, I developed film posters, single artwork, and visual assets for streaming services, sales, PR, marketing, social media, and touring.",
+      "cover": {
+        "file": "brink/01.jpg",
+        "alt": "Orange and yellow The Brink Of film poster with two musicians and hand-drawn title lettering",
+        "span": "half"
+      },
+      "images": [
+        {
+          "file": "brink/02.jpg",
+          "alt": "The Brink Of film artwork featuring a theater marquee and the lead musicians",
+          "span": "half"
+        },
+        {
+          "file": "brink/03.jpg",
+          "alt": "The Brink Of promotional graphic with film synopsis and soundtrack artwork",
+          "span": "full"
+        },
+        {
+          "file": "brink/04.png",
+          "alt": "The Brink Of Something to Hold on To single artwork",
+          "span": "half"
+        },
+        {
+          "file": "brink/05.png",
+          "alt": "The Brink Of Sunday single artwork",
+          "span": "half"
+        }
+      ],
+      "source": "https://readymag.website/u2408382941/4498950/thebrinkof/",
+      "year": "2022",
+      "draft": false,
+      "client": "Respect Films",
+      "client_url": "https://www.respectfilms.com/",
+      "overview": "A visual identity for a music romance film and its real-life band.",
+      "roles": [
+        "Branding",
+        "Art direction"
+      ]
+    },
+    {
       "slug": "wl-western-pulp-drop",
       "title": "WL Western Pulp Drop",
       "description": "I led the graphics team and creative direction for a Warren Lotas release exploring the Western Pulps theme. Alongside contributing original illustrations, I curated pieces to form a cohesive collection that carried the brand's punk, biker, and spaghetti western influences into new graphics and apparel.",
@@ -284,97 +383,6 @@
       "overview": "Illustrated apparel inspired by punk, biker, and spaghetti western culture.",
       "roles": [
         "Illustration",
-        "Art direction"
-      ]
-    },
-    {
-      "slug": "emo-nite",
-      "title": "Emo Nite",
-      "description": "Emo Nite is a traveling music event celebrating emo music and culture in clubs and theaters across the country. I was commissioned to concept and develop apparel graphics for tour merchandise and the Emo Nite website, creating designs that fit the brand's provocative aesthetic and rebellious spirit.",
-      "cover": {
-        "file": "home/06.jpg",
-        "alt": "Emo Nite illustrated black hoodie held above the audience at a live event"
-      },
-      "images": [
-        {
-          "file": "emo/01.jpg",
-          "alt": "Black Emo Nite hoodie with flaming illustrated graphic",
-          "span": "full"
-        },
-        {
-          "file": "emo/02.jpg",
-          "alt": "Black Emo Nite pants with red and white flame graphics",
-          "span": "half"
-        },
-        {
-          "file": "emo/03.jpg",
-          "alt": "Side view of Emo Nite pants with illustrated flame details",
-          "span": "half"
-        },
-        {
-          "file": "emo/04.png",
-          "alt": "Black Emo Nite T-shirt featuring This Is Your Brain on Emo Nite graphic",
-          "span": "half"
-        },
-        {
-          "file": "emo/05.png",
-          "alt": "Black Emo Nite T-shirt with provocative illustrated front graphic",
-          "span": "half"
-        }
-      ],
-      "source": "https://readymag.website/u2408382941/4498950/emonite/",
-      "year": "2024",
-      "draft": false,
-      "client": "Emo Nite",
-      "overview": "Illustrated tour merchandise for Emo Nite.",
-      "roles": [
-        "Illustration",
-        "Art direction"
-      ]
-    },
-    {
-      "slug": "village-mice",
-      "title": "Village Mice TCG",
-      "description": "Working with artist Steven Savoca (@fathersteve), I helped shape the brand identity and visual language for Village Mice, a trading card game featuring his mouse artwork. The work spanned translating initial sketches into digital illustrations, formatting the cards, and designing packaging to turn Steve's artistic vision into a collectible card game.",
-      "cover": {
-        "file": "home/07.jpg",
-        "alt": "Colorful Village Mice trading cards and branded packaging featuring Steven Savoca's mouse characters"
-      },
-      "images": [
-        {
-          "file": "mice/01.jpg",
-          "alt": "Village Mice foil trading card packs held over grass",
-          "span": "half"
-        },
-        {
-          "file": "mice/02.jpg",
-          "alt": "Blue Village Mice trading card display packaging",
-          "span": "half"
-        },
-        {
-          "file": "mice/03.png",
-          "alt": "Village Mice trading card design featuring a mouse character",
-          "span": "full"
-        },
-        {
-          "file": "mice/04.png",
-          "alt": "Additional Village Mice trading card layout and illustrated mouse artwork",
-          "span": "full"
-        },
-        {
-          "file": "mice/05.png",
-          "alt": "Village Mice collectible card typography and gameplay layout",
-          "span": "full"
-        }
-      ],
-      "source": "https://readymag.website/u2408382941/4498950/villagemice/",
-      "year": "2023",
-      "draft": false,
-      "client": "Father Steve",
-      "client_url": "https://www.instagram.com/fathersteve/?hl=en",
-      "overview": "A visual identity, cards, and packaging for Village Mice.",
-      "roles": [
-        "Branding",
         "Art direction"
       ]
     }

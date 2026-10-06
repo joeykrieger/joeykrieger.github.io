@@ -47,6 +47,7 @@ if (preview) {
   }
 
   function showPreview(link, pointer = null) {
+    if (namePreview) namePreview.hidden = true;
     activePreviewLink = link;
     previewPointer = pointer;
     if (image.getAttribute("src") !== link.dataset.previewSrc) image.src = link.dataset.previewSrc;
@@ -86,4 +87,50 @@ if (preview) {
     else hidePreview();
   }, { passive: true });
   window.addEventListener("resize", hidePreview);
+}
+
+// The name portrait stays at the bottom of the bio column instead of following the cursor.
+const nameLink = document.querySelector('a[data-name-preview-src]');
+const namePreview = document.querySelector('.name-preview');
+const desktopBio = window.matchMedia('(min-width: 721px)');
+
+if (nameLink && namePreview) {
+  const portrait = namePreview.querySelector('img');
+  const sidebar = namePreview.closest('.sidebar');
+  const content = sidebar.querySelector('.sidebar-content');
+
+  function hideNamePreview() {
+    namePreview.hidden = true;
+  }
+
+  function showNamePreview() {
+    if (!desktopBio.matches) return;
+    const available = sidebar.getBoundingClientRect().bottom - content.getBoundingClientRect().bottom - 24;
+    if (available < 96) return;
+    if (preview) preview.hidden = true;
+    namePreview.style.maxHeight = `${Math.min(window.innerHeight * .37, available)}px`;
+    if (portrait.getAttribute('src') !== nameLink.dataset.namePreviewSrc) {
+      portrait.src = nameLink.dataset.namePreviewSrc;
+    }
+    namePreview.hidden = false;
+  }
+
+  nameLink.addEventListener('pointerenter', () => {
+    if (hoverPointer.matches) showNamePreview();
+  });
+  nameLink.addEventListener('pointerleave', () => {
+    if (!nameLink.matches(':focus-visible')) hideNamePreview();
+  });
+  nameLink.addEventListener('focus', () => {
+    if (nameLink.matches(':focus-visible')) showNamePreview();
+  });
+  nameLink.addEventListener('blur', () => {
+    if (!(hoverPointer.matches && nameLink.matches(':hover'))) hideNamePreview();
+  });
+  nameLink.addEventListener('click', hideNamePreview);
+  portrait.addEventListener('error', hideNamePreview);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') hideNamePreview();
+  });
+  window.addEventListener('resize', hideNamePreview);
 }

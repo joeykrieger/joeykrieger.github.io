@@ -174,161 +174,144 @@ def bio_html(segments):
         preview = segment.get("preview")
         attributes = ""
         if preview:
-            name = optimize(preview, width_limits=(200,))["variants"][0][0]
-            attributes = f' data-preview-src="./images/{name}"'
+            sidebar_preview = preview.get("placement") == "sidebar"
+            name = optimize(preview, width_limits=(480,) if sidebar_preview else (200,))["variants"][0][0]
+            attribute = "data-name-preview-src" if sidebar_preview else "data-preview-src"
+            attributes = f' {attribute}="./images/{name}"'
         parts.append(f'<a href="{text(segment["url"])}" target="_blank" rel="noopener noreferrer"'
                      f'{attributes}>{label}</a>')
     return "".join(parts)
 
 
-def project_card(project, eager=False):
-    slug = text(project["slug"])
-    return (f'<article class="project-card" id="project-{text(project["slug"])}">'
-            f'<a class="project-link" href="./projects/{slug}/" aria-labelledby="title-{slug}">'
-            f'{image_html(project["cover"], eager=eager)}'
-            '<div class="project-card-caption">'
-            f'<h3 class="project-title" id="title-{slug}">{text(project["title"])}</h3>'
-            f'<p class="project-meta">{text(" · ".join(project["roles"]))} · {text(project["year"])}</p>'
-            '</div></a></article>')
+
+GALLERY_SIZES = "(max-width: 720px) 90vw, (max-width: 1100px) 68vw, (max-width: 1800px) 55vw, 960px"
 
 
-def gallery_html(project):
-    gallery = []
-    seen = set()
+def slides_for(project):
+    slides, seen = [], set()
     for image in [project["cover"], *project.get("images", [])]:
         if image["file"] in seen:
             continue
         seen.add(image["file"])
-        span = image.get("span", "full")
-        sizes = "(max-width: 760px) 90vw, " + {"full": "90vw", "half": "44vw", "third": "29vw"}[span]
-        caption = f'<figcaption>{text(image["caption"])}</figcaption>' if image.get("caption") else ""
-        gallery.append(f'<figure data-span="{span}">{image_html(image, eager=len(gallery) == 0, sizes=sizes, prefix="../../")}{caption}</figure>')
-    return "".join(gallery)
+        info = optimize(image)
+        slides.append({
+            "src": "./images/" + info["variants"][-1][0],
+            "srcset": ", ".join(f"./images/{name} {width}w" for name, width in info["variants"]),
+            "width": info["width"], "height": info["height"],
+            "alt": image["alt"], "caption": image.get("caption", ""),
+        })
+    return slides
 
 
-def project_page(project, previous, following, common):
+def project_html(project, eager=False):
+    slug, title = text(project["slug"]), text(project["title"])
+    slides = slides_for(project)
+    payload = json.dumps(slides, ensure_ascii=False).replace("<", "\\u003c")
+    image = image_html(project["cover"], eager=eager, sizes=GALLERY_SIZES).replace("<img ", '<img class="gallery-image" ')
     client = text(project["client"])
     if project.get("client_url"):
-        client = (f'<a href="{text(project["client_url"])}" target="_blank" rel="noopener noreferrer">'
-                  f'{client}</a>')
+        client = f'<a href="{text(project["client_url"])}" target="_blank" rel="noopener noreferrer">{client}</a>'
     motion = project.get("motion")
     motion_link = (f'<p class="motion-link"><a href="{text(motion["url"])}" target="_blank" rel="noopener noreferrer">'
-                   f'{text(motion["label"])}</a></p>' if motion else "")
-    navigation = (f'<a href="../{text(previous["slug"])}/"><span>Previous project</span>{text(previous["title"])}</a>'
-                  f'<a href="../{text(following["slug"])}/"><span>Next project</span>{text(following["title"])}</a>')
-    values = common | {
-        "TITLE": text(f'{project["title"]} — {common["RAW_NAME"]}'),
-        "DESCRIPTION": text(project["overview"]),
-        "CANONICAL": canonical(common["SITE_URL"], f'projects/{project["slug"]}/'),
-        "PROJECT_TITLE": text(project["title"]), "OVERVIEW": text(project["overview"]),
-        "CLIENT": client, "PROJECT_YEAR": text(project["year"]),
-        "ROLES": "".join(f'<li>{text(role)}</li>' for role in project["roles"]),
-        "GALLERY": gallery_html(project), "STORY": text(project["description"]),
-        "STORY_IMAGE": image_html(project["cover"], sizes="(max-width: 760px) 85vw, 800px", prefix="../../"),
-        "MOTION": motion_link, "PROJECT_NAVIGATION": navigation,
-        "SOCIAL_META": social_metadata(common["SITE_URL"], common["RAW_NAME"], project["title"],
-                                       project["overview"], common["SHARE_IMAGE"], f'projects/{project["slug"]}/'),
-    }
-    values["ROBOTS"] = '<meta name="robots" content="noindex, nofollow">' if project["draft"] or common["SITE_DRAFT"] else ""
-    return render("project.html", values)
+                   f'{text(motion["label"])}</a></p>') if motion else ""
+    controls = (f'<button class="gallery-hit gallery-prev" type="button" aria-label="Previous image — {title}" aria-controls="stage-{slug}"><span aria-hidden="true"></span></button>'
+                f'<button class="gallery-hit gallery-next" type="button" aria-label="Next image — {title}" aria-controls="stage-{slug}"><span aria-hidden="true"></span></button>') if len(slides) > 1 else ""
+    fallback = "".join(image_html(image, sizes=GALLERY_SIZES) for image in project.get("images", []))
+    return f'''
+      <article class="project-row" id="{slug}" aria-labelledby="title-{slug}">
+        <div class="project-notes">
+          <h2 class="project-title" id="title-{slug}">{title}</h2>
+          <p class="project-overview">{text(project["overview"])}</p>
+          <p class="project-roles">{text(" · ".join(project["roles"]))}</p>
+          <details class="project-details">
+            <summary><span class="more-label">Read more</span><span class="less-label">Read less</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+            <div class="project-story"><p>{text(project["description"])}</p><p class="project-client">Client: {client}</p>{motion_link}</div>
+          </details>
+        </div>
+        <section class="gallery" aria-label="{title} image gallery" aria-roledescription="carousel">
+          <div class="gallery-heading"><span>{text(project["year"])}</span></div>
+          <figure>
+            <div class="gallery-stage" id="stage-{slug}">{image}{controls}</div>
+            <figcaption class="gallery-caption" hidden></figcaption>
+          </figure>
+          <p class="gallery-status sr-only" role="status"></p>
+          <script class="gallery-data" type="application/json">{payload}</script>
+          <noscript><details class="gallery-fallback"><summary>View all images</summary>{fallback}</details></noscript>
+        </section>
+      </article>
+'''
 
 
-def canonical(site_url, path=""):
-    if not site_url:
+def social_metadata(site, image_name):
+    base = site.get("url", "").rstrip("/") + "/"
+    if base == "/":
         return ""
-    return f'<link rel="canonical" href="{text(urljoin(site_url.rstrip("/") + "/", path))}">'
-
-
-def social_metadata(site_url, site_name, title, description, image_name, path=""):
-    if not site_url:
-        return ""
-    base = site_url.rstrip("/") + "/"
-    image_url = urljoin(base, image_name)
-    image_alt = "IF A BAGEL CAN HAVE EVERYTHING, SO CAN YOU. — centered orange lettering on white"
     properties = {
-        "og:title": title, "og:site_name": site_name, "og:type": "website",
-        "og:url": urljoin(base, path), "og:description": description,
-        "og:image": image_url, "og:image:type": "image/png",
-        "og:image:width": "1200", "og:image:height": "630", "og:image:alt": image_alt,
+        "og:title": site.get("share_title", site["role"]), "og:site_name": site["name"],
+        "og:type": "website", "og:url": base, "og:description": site["intro"],
+        "og:image": urljoin(base, image_name), "og:image:type": "image/png",
+        "og:image:width": "1200", "og:image:height": "630",
+        "og:image:alt": "IF A BAGEL CAN HAVE EVERYTHING, SO CAN YOU. — centered orange lettering on white",
     }
-    tags = [f'<meta property="{key}" content="{text(value)}">' for key, value in properties.items()]
-    for key, value in {"twitter:card": "summary_large_image", "twitter:title": title,
-                       "twitter:description": description, "twitter:image": image_url,
-                       "twitter:image:alt": image_alt}.items():
-        tags.append(f'<meta name="{key}" content="{text(value)}">')
-    return "\n  ".join(tags)
-
-
-def render(template_name, values):
-    template = (ROOT / "templates" / template_name).read_text()
-    return re.sub(r"@@([A-Z_]+)@@", lambda match: values[match[1]], template)
+    properties.update({"twitter:card": "summary_large_image", "twitter:title": properties["og:title"],
+                       "twitter:description": site["intro"], "twitter:image": properties["og:image"]})
+    return "\n  ".join(f'<meta {"name" if key.startswith("twitter:") else "property"}="{key}" content="{text(value)}">' for key, value in properties.items())
 
 
 def build(publish=False):
-    data = json.loads((ROOT / "content" / "portfolio.json").read_text())
+    data = json.loads((ROOT / "content/portfolio.json").read_text())
     validate(data, publish)
     IMAGE_CACHE.clear()
-    # Only the generated dist directory is replaced; originals and content are preserved.
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir()
     site = data["site"]
-    projects = data["projects"]
-    share_image_name = "share-preview-" + hashlib.sha256((ROOT / "assets" / "share-preview.png").read_bytes()).hexdigest()[:12] + ".png"
-    contacts = []
-    if site.get("email"):
-        contacts.append(f'<a class="email-link" href="mailto:{text(site["email"])}">{text(site["email"])}</a>')
-    for link in site.get("links", []):
-        contacts.append(f'<a href="{text(link["url"])}">{text(link["label"])}</a>')
-    if not contacts:
-        contacts.append('<p class="contact-pending">Contact details coming soon.</p>')
-    contact_section = render("contact.html", {
-        "CONTACT_HEADING": text(site.get("contact_heading", "Get in touch")),
-        "CONTACT": "".join(contacts),
-    })
-    common = {
-        "STYLE_VERSION": hashlib.sha256((ROOT / "assets" / "styles.css").read_bytes()).hexdigest()[:12],
-        "CV_VERSION": hashlib.sha256((ROOT / "assets" / "Joey_Krieger_GraphicDesigner.pdf").read_bytes()).hexdigest()[:12],
-        "ICON_VERSION": hashlib.sha256((ROOT / "assets" / "favicon.svg").read_bytes()).hexdigest()[:12],
-        "SHARE_IMAGE": share_image_name,
-        "RAW_NAME": site["name"], "SITE_URL": site.get("url", ""), "SITE_DRAFT": site["draft"],
-        "NAME": text(site["name"]), "YEAR": str(date.today().year), "CONTACT_SECTION": contact_section,
-        "ROBOTS": '<meta name="robots" content="noindex, nofollow">' if site["draft"] else "",
-    }
-    values = common | {
+    share_name = "share-preview-" + hashlib.sha256((ROOT / "assets/share-preview.png").read_bytes()).hexdigest()[:12] + ".png"
+    values = {
         "TITLE": text(f'{site["name"]} — {site["role"]}'),
-        "DESCRIPTION": text(site["intro"]),
-        "CANONICAL": canonical(site.get("url", "")), "BIO": bio_html(site["bio"]),
-        "SOCIAL_META": social_metadata(site.get("url", ""), site["name"], site.get("share_title", site["role"]),
-                                       site["intro"], share_image_name),
-        "PROJECT_COUNT": f"{len(projects):02d}",
-        "PROJECTS": "".join(project_card(p, eager=i == 0) for i, p in enumerate(projects)),
-        "DRAFT_BADGE": '<span class="draft-badge">Portfolio draft · artwork pending</span>' if site["draft"] else ""
+        "DESCRIPTION": text(site["intro"]), "BIO": bio_html(site["bio"]),
+        "CANONICAL": f'<link rel="canonical" href="{text(site["url"].rstrip("/") + "/")}">' if site.get("url") else "",
+        "EMAIL": text(site["email"]), "NAME": text(site["name"]), "YEAR": str(date.today().year),
+        "CONTACT_HEADING": text(site.get("contact_heading", "Get in touch")),
+        "SOCIAL_LINKS": "".join(f'<a href="{text(link["url"])}" target="_blank" rel="noopener noreferrer" aria-label="{text(link.get("aria_label", link["label"]))}">{text(link["label"])}</a>' for link in site.get("links", [])),
+        "STYLE_VERSION": hashlib.sha256((ROOT / "assets/styles.css").read_bytes()).hexdigest()[:12],
+        "SITE_VERSION": hashlib.sha256((ROOT / "assets/site.js").read_bytes()).hexdigest()[:12],
+        "GALLERY_VERSION": hashlib.sha256((ROOT / "assets/galleries.js").read_bytes()).hexdigest()[:12],
+        "CV_VERSION": hashlib.sha256((ROOT / "assets/Joey_Krieger_GraphicDesigner.pdf").read_bytes()).hexdigest()[:12],
+        "ICON_VERSION": hashlib.sha256((ROOT / "assets/favicon.svg").read_bytes()).hexdigest()[:12],
+        "SOCIAL_META": social_metadata(site, share_name),
+        "PROJECTS": "".join(project_html(project, eager=index == 0) for index, project in enumerate(data["projects"])),
     }
-    (OUT / "index.html").write_text(render("index.html", values))
-    for index, project in enumerate(projects):
-        dest = OUT / "projects" / project["slug"]
-        dest.mkdir(parents=True)
-        previous = projects[(index - 1) % len(projects)]
-        following = projects[(index + 1) % len(projects)]
-        (dest / "index.html").write_text(project_page(project, previous, following, common))
-    for asset in ("styles.css", "site.js", "project.js", "favicon.svg", "favicon.png", "apple-touch-icon.png", "Joey_Krieger_GraphicDesigner.pdf"):
+    template = (ROOT / "templates/index.html").read_text()
+    page = re.sub(r"@@([A-Z_]+)@@", lambda match: values[match[1]], template)
+    (OUT / "index.html").write_text(page)
+    # Preserve previously published project addresses after moving to one page.
+    for project in data["projects"]:
+        destination = "../../#" + project["slug"]
+        route = OUT / "projects" / project["slug"]
+        route.mkdir(parents=True)
+        canonical = f'<link rel="canonical" href="{text(site["url"].rstrip("/") + "/")}">' if site.get("url") else ""
+        (route / "index.html").write_text(
+            '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">'
+            f'<meta http-equiv="refresh" content="0; url={text(destination)}">'
+            f'{canonical}<title>{text(project["title"])} — {text(site["name"])}</title>'
+            f'</head><body><p><a href="{text(destination)}">View {text(project["title"])}</a></p></body></html>'
+        )
+    for asset in ("styles.css", "site.js", "galleries.js", "favicon.svg", "favicon.png", "apple-touch-icon.png", "Joey_Krieger_GraphicDesigner.pdf"):
         shutil.copyfile(ROOT / "assets" / asset, OUT / asset)
-    shutil.copyfile(ROOT / "assets" / "share-preview.png", OUT / share_image_name)
+    shutil.copyfile(ROOT / "assets/share-preview.png", OUT / share_name)
     (OUT / ".nojekyll").touch()
-    style_bytes = (OUT / "styles.css").stat().st_size
-    shell_bytes = (OUT / "index.html").stat().st_size + style_bytes + (OUT / "site.js").stat().st_size
-    project_script_bytes = (OUT / "project.js").stat().st_size
-    page_bytes = [page.stat().st_size + style_bytes + project_script_bytes for page in (OUT / "projects").glob("*/index.html")]
-    require(max([shell_bytes, *page_bytes]) < 100_000, "A page's HTML, CSS, and JavaScript exceed the 100 KB budget.")
-    print(f"Built {'publish-ready site' if publish else 'local draft'}: {OUT}")
-    print(f"Homepage HTML + CSS + JS: {shell_bytes:,} bytes. {len(projects)} project pages, largest shell: {max(page_bytes):,} bytes.")
-    print("Responsive images are shared across pages; artwork originals are excluded from dist.")
+    shell_bytes = sum((OUT / asset).stat().st_size for asset in ("index.html", "styles.css", "site.js", "galleries.js"))
+    require(shell_bytes < 100_000, "HTML, CSS, and JavaScript exceed the 100 KB budget.")
+    print(f'Built single-page portfolio: {OUT}')
+    print(f'{len(data["projects"])} projects; HTML + CSS + JavaScript: {shell_bytes:,} bytes.')
+    print("Original artwork is preserved outside dist. This build does not publish.")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--publish", action="store_true", help="Reject drafts and missing artwork/contact before deployment.")
+    parser.add_argument("--publish", action="store_true", help="Validate finished content; does not deploy.")
     args = parser.parse_args()
     try:
         build(args.publish)
