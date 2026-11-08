@@ -123,6 +123,42 @@
       ]
     },
     {
+      "slug": "the-nest-x-steels",
+      "title": "The Nest x Steels",
+      "overview": "Illustration for The Nest x Steels.",
+      "description": "Illustration for The Nest x Steels.",
+      "cover": {
+        "file": "The Nest x Steels/Nest Steels Shirt-01.png",
+        "alt": "Charcoal The Nest x Steels T-shirt with an illustrated dice graphic on a wooden hanger"
+      },
+      "images": [],
+      "year": "2026",
+      "draft": false,
+      "client": "The Nest x Steels",
+      "roles": [
+        "Illustration"
+      ]
+    },
+    {
+      "slug": "wine-therapy-merch",
+      "title": "Wine Therapy Merch",
+      "overview": "Illustration for Wine Therapy merchandise.",
+      "description": "Illustration for Wine Therapy merchandise.",
+      "cover": {
+        "file": "Wine Therapy Merch/Tote Mock.png",
+        "alt": "Wine Therapy NYC illustrated cream tote bag holding wine bottles, worn on a subway staircase"
+      },
+      "images": [],
+      "year": "2025",
+      "draft": false,
+      "client": "Wine Therapy NYC",
+      "roles": [
+        "Illustration"
+      ]
+    }
+  ],
+  "archived_projects": [
+    {
       "slug": "warren-lotas-jewelry",
       "title": "Warren Lotas — Jewelry",
       "description": "I led the development of a rodeo-style belt buckle in sterling silver, with gold-plated details and blue enamel accents, and a sterling silver money clip for two separate Warren Lotas releases. Working from the creative director's concept sketches, I refined the final illustrations and created tech packs to guide model makers and jewelry vendors from 2D artwork through 3D development and production.",

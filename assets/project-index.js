@@ -5,6 +5,8 @@ const projectIndex = document.querySelector(".project-index");
 const projectGrid = document.querySelector(".project-grid");
 const projectViewer = document.querySelector(".project-viewer");
 const returnLink = document.querySelector(".index-return");
+const lightbox = document.querySelector(".project-lightbox");
+const lightboxImage = lightbox.querySelector(".lightbox-image");
 const cards = [...projectGrid.querySelectorAll(".project-card")];
 const projects = [...projectViewer.querySelectorAll(".project-row")];
 const projectById = new Map(projects.map(project => [project.id, project]));
@@ -37,9 +39,34 @@ function scrollToViewer() {
   window.scrollTo({ top, behavior: "instant" });
 }
 
+function dismissLightbox() {
+  if (lightbox.open) lightbox.close();
+  document.body.classList.remove("lightbox-open");
+}
+
 function showProject(id, { focus = true } = {}) {
   const project = projectById.get(id);
   if (!project) return;
+  const slides = JSON.parse(project.querySelector(".gallery-data").textContent);
+  // A lone image opens above the overview, without entering the project layout.
+  if (slides.length === 1 && typeof lightbox.showModal === "function") {
+    showIndex({ focus: false });
+    currentProject = id;
+    lastCard = cardById.get(id);
+    lastCard.setAttribute("aria-expanded", "true");
+    const image = slides[0];
+    lightboxImage.width = image.width;
+    lightboxImage.height = image.height;
+    lightboxImage.alt = image.alt;
+    lightboxImage.sizes = "90vw";
+    lightboxImage.srcset = image.srcset;
+    lightboxImage.src = image.src;
+    lightbox.setAttribute("aria-label", `${project.querySelector(".project-title").textContent} — enlarged image`);
+    document.body.classList.add("lightbox-open");
+    lightbox.showModal();
+    return;
+  }
+  dismissLightbox();
   currentProject = id;
   lastCard = cardById.get(id);
   projectIndex.hidden = true;
@@ -51,6 +78,7 @@ function showProject(id, { focus = true } = {}) {
 }
 
 function showIndex({ restore = true, focus = true } = {}) {
+  dismissLightbox();
   currentProject = null;
   projectViewer.hidden = true;
   projectIndex.hidden = false;
@@ -89,11 +117,17 @@ returnLink.addEventListener("click", event => {
 });
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && currentProject) {
+  if (event.key === "Escape" && currentProject && !lightbox.open) {
     event.preventDefault();
     closeProject();
   }
 });
+
+lightbox.addEventListener("cancel", event => {
+  event.preventDefault();
+  closeProject();
+});
+lightbox.addEventListener("click", closeProject);
 
 function syncLocation({ focus = true } = {}) {
   const id = location.hash.slice(1);

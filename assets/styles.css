@@ -47,13 +47,21 @@ html { scroll-behavior: auto; }
 .project-card-title { font-size: 1rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; }
 .project-card-roles { margin-top: .2rem; font-size: .9375rem; line-height: 1.2; letter-spacing: -.02em; color: var(--muted); }
 .project-card:hover { text-decoration: none; }
+.project-card[aria-haspopup="dialog"] { cursor: zoom-in; }
 .project-card:hover .project-card-title, .project-card:focus-visible .project-card-title { color: var(--accent-hover); text-decoration: underline; text-underline-offset: .18em; }
 .index-return { position: sticky; top: var(--gutter); z-index: 3; display: inline-flex; align-items: center; gap: .75rem; min-height: 2.75rem; margin-bottom: 1.25rem; background: var(--paper); font-size: 1rem; font-weight: 700; letter-spacing: -.02em; }
 .index-return:hover, .index-return:focus-visible { color: var(--accent-hover); }
 .return-chevron { width: .625rem; height: .625rem; border-top: 2px solid currentColor; border-left: 2px solid currentColor; transform: rotate(-45deg); }
 .project-title:focus { outline: none; }
+body.lightbox-open { overflow: hidden; }
+.project-lightbox { width: min(calc(100% - 2 * var(--gutter)), 96rem); height: calc(100svh - 2 * var(--gutter)); max-width: none; max-height: none; padding: 0; border: 0; color: white; background: transparent; overflow: visible; cursor: zoom-out; }
+.project-lightbox::backdrop { background: rgb(20 20 20 / .82); cursor: zoom-out; }
+.lightbox-dismiss { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: zoom-out; appearance: none; }
+.lightbox-dismiss:focus-visible { outline: none; }
+.lightbox-dismiss:focus-visible .lightbox-image { outline: 2px solid white; outline-offset: 4px; }
+.lightbox-image { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; min-height: 0; object-fit: contain; }
 .project-row { display: grid; grid-template-columns: minmax(11.5rem, 1fr) minmax(0, 3fr); gap: clamp(1.5rem, 2.1vw, 2.5rem); align-items: start; margin-bottom: clamp(4rem, 7vw, 7.5rem); scroll-margin-top: var(--gutter); }
-.project-notes { min-width: 0; padding-top: .15rem; }
+.project-notes { min-width: 0; }
 .project-title { font-size: clamp(1.375rem, 1.7vw, 1.75rem); font-weight: 700; line-height: 1.08; letter-spacing: -.03em; text-wrap: balance; }
 .project-overview { margin-top: .5rem; font-size: 1.125rem; line-height: 1.2; letter-spacing: -.025em; }
 .project-roles { font-size: .9375rem; line-height: 1.25; margin-top: .45rem; color: var(--muted); }
@@ -70,11 +78,11 @@ html { scroll-behavior: auto; }
 .project-details[open] .less-label { display: inline; }
 .project-story { padding-top: .5rem; font-size: 1rem; line-height: 1.3; letter-spacing: -.025em; }
 .project-client { margin-top: .75rem; font-size: 1rem; font-weight: 600; }
+.project-year { margin-top: .25rem; font-size: 1rem; font-weight: 600; }
 .motion-link { margin-top: .75rem; font-size: 1rem; font-weight: 600; }
 .gallery { min-width: 0; }
-.gallery-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1rem; font-size: 1rem; line-height: 1.25; font-weight: 500; }
 .gallery-stage { position: relative; height: min(70svh, 40rem); width: 100%; isolation: isolate; touch-action: pan-y pinch-zoom; }
-.gallery-image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.gallery-image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center top; }
 .gallery-hit { display: none; position: absolute; top: 0; bottom: 0; width: 50%; border: 0; padding: 0; background: transparent; cursor: pointer; z-index: 1; }
 .gallery-ready .gallery-hit { display: block; }
 .gallery-prev { left: 0; }
@@ -121,7 +129,6 @@ html { scroll-behavior: auto; }
   .project-title { font-size: 1.625rem; }
   .project-overview { margin-top: .5rem; }
   .project-roles { margin-top: .45rem; }
-  .gallery-heading { margin-bottom: .75rem; }
   .gallery-stage { height: auto; aspect-ratio: 4 / 5; max-height: 65svh; }
   .contact-footer h2 { font-size: 1.75rem; }
   .email-link { font-size: clamp(1.25rem, 5.8vw, 2rem); }

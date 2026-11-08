@@ -191,7 +191,9 @@ TILE_SIZES = "(max-width: 580px) 90vw, (max-width: 720px) 44vw, (max-width: 1100
 def project_card_html(project, eager=False):
     slug, title = text(project["slug"]), text(project["title"])
     image = image_html(project["cover"], eager=eager, sizes=TILE_SIZES)
-    return (f'<a class="project-card" href="#{slug}" aria-controls="{slug}" '
+    single_image = len({image["file"] for image in [project["cover"], *project.get("images", [])]}) == 1
+    controls = 'aria-controls="project-lightbox" aria-haspopup="dialog"' if single_image else f'aria-controls="{slug}"'
+    return (f'<a class="project-card" href="#{slug}" {controls} '
             f'aria-expanded="false" aria-label="View {title}">'
             f'{image}<div class="project-card-caption"><h2 class="project-card-title">{title}</h2>'
             f'<p class="project-card-roles">{text(" · ".join(project["roles"]))}</p></div></a>')
@@ -236,11 +238,10 @@ def project_html(project, eager=False):
           <p class="project-roles">{text(" · ".join(project["roles"]))}</p>
           <details class="project-details">
             <summary><span class="more-label">Read more</span><span class="less-label">Read less</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
-            <div class="project-story">{story}<p class="project-client">Client: {client}</p>{motion_link}</div>
+            <div class="project-story">{story}<p class="project-client">Client: {client}</p><p class="project-year">{text(project["year"])}</p>{motion_link}</div>
           </details>
         </div>
         <section class="gallery" aria-label="{title} image gallery" aria-roledescription="carousel">
-          <div class="gallery-heading"><span>{text(project["year"])}</span></div>
           <figure>
             <div class="gallery-stage" id="stage-{slug}">{image}{controls}</div>
             <figcaption class="gallery-caption" hidden></figcaption>
@@ -299,17 +300,19 @@ def build(publish=False):
     page = re.sub(r"@@([A-Z_]+)@@", lambda match: values[match[1]], template)
     (OUT / "index.html").write_text(page)
     # Preserve previously published project addresses after moving to one page.
-    for project in data["projects"]:
-        destination = "../../#" + project["slug"]
+    routes = [(project, "../../#" + project["slug"]) for project in data["projects"]]
+    routes.extend((project, "../../#projects") for project in data.get("archived_projects", []))
+    for project, destination in routes:
         route = OUT / "projects" / project["slug"]
         route.mkdir(parents=True)
         canonical = f'<link rel="canonical" href="{text(site["url"].rstrip("/") + "/")}">' if site.get("url") else ""
+        label = "View projects" if destination == "../../#projects" else "View " + project["title"]
         (route / "index.html").write_text(
             '<!doctype html><html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
             f'<meta http-equiv="refresh" content="0; url={text(destination)}">'
             f'{canonical}<title>{text(project["title"])} — {text(site["name"])}</title>'
-            f'</head><body><p><a href="{text(destination)}">View {text(project["title"])}</a></p></body></html>'
+            f'</head><body><p><a href="{text(destination)}">{text(label)}</a></p></body></html>'
         )
     for asset in ("styles.css", "site.js", "galleries.js", "project-index.js", "favicon.svg", "favicon.png", "apple-touch-icon.png", "Joey_Krieger_GraphicDesigner.pdf"):
         shutil.copyfile(ROOT / "assets" / asset, OUT / asset)
