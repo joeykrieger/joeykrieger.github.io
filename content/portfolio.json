@@ -75,6 +75,54 @@
   },
   "projects": [
     {
+      "slug": "acg-holiday-2026",
+      "title": "ACG Holiday 2026",
+      "overview": "Illustration and Graphic design for Nike's Outdoor lifestyle brand.",
+      "description": "Illustration and Graphic design for Nike's Outdoor lifestyle brand.",
+      "cover": {
+        "file": "ACG Holiday 2026/ACG_HO26-01.png",
+        "alt": "Child wearing a cream Nike ACG sweatshirt with an illustrated mountain and creature graphic"
+      },
+      "images": [
+        {
+          "file": "ACG Holiday 2026/ACG_HO26-02.png",
+          "alt": "Blue and cream Nike ACG sweatshirt designs beside a model wearing the blue graphic sweatshirt"
+        },
+        {
+          "file": "ACG Holiday 2026/ACG_HO26-03.png",
+          "alt": "Front and back views of a charcoal Nike ACG T-shirt with neon lettering, a hypnotic face, and mountain artwork"
+        },
+        {
+          "file": "ACG Holiday 2026/ACG_HO26-04.png",
+          "alt": "All Conditions Gear illustration with purple lettering, a spiral-eyed figure, and orange mountains"
+        },
+        {
+          "file": "ACG Holiday 2026/ACG_HO26-05.png",
+          "alt": "Child wearing a charcoal Nike ACG spider T-shirt beside charcoal and cream garment designs"
+        },
+        {
+          "file": "ACG Holiday 2026/ACG_HO26-06.png",
+          "alt": "Child wearing a black Nike ACG long-sleeve top with purple, yellow, and blue ACG graphics"
+        },
+        {
+          "file": "ACG Holiday 2026/ACG_HO26-07.png",
+          "alt": "Black and blue Nike ACG long-sleeve garment designs beside a model wearing the blue colorway"
+        },
+        {
+          "file": "ACG Holiday 2026/ACG_HO26-08.png",
+          "alt": "Cream Nike ACG T-shirt on a model beside a tiger and mountain illustration with All Conditions Gear lettering"
+        }
+      ],
+      "year": "2026",
+      "draft": false,
+      "client": "Nike ACG",
+      "client_url": "https://www.nike.com/acg",
+      "roles": [
+        "Illustration",
+        "Graphic design"
+      ]
+    },
+    {
       "slug": "warren-lotas-jewelry",
       "title": "Warren Lotas — Jewelry",
       "description": "I led the development of a rodeo-style belt buckle in sterling silver, with gold-plated details and blue enamel accents, and a sterling silver money clip for two separate Warren Lotas releases. Working from the creative director's concept sketches, I refined the final illustrations and created tech packs to guide model makers and jewelry vendors from 2D artwork through 3D development and production.",

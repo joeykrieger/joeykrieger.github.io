@@ -185,6 +185,16 @@ def bio_html(segments):
 
 
 GALLERY_SIZES = "(max-width: 720px) 90vw, (max-width: 1100px) 68vw, (max-width: 1800px) 55vw, 960px"
+TILE_SIZES = "(max-width: 580px) 90vw, (max-width: 720px) 44vw, (max-width: 1100px) 33vw, (max-width: 1800px) 24vw, 416px"
+
+
+def project_card_html(project, eager=False):
+    slug, title = text(project["slug"]), text(project["title"])
+    image = image_html(project["cover"], eager=eager, sizes=TILE_SIZES)
+    return (f'<a class="project-card" href="#{slug}" aria-controls="{slug}" '
+            f'aria-expanded="false" aria-label="View {title}">'
+            f'{image}<div class="project-card-caption"><h2 class="project-card-title">{title}</h2>'
+            f'<p class="project-card-roles">{text(" · ".join(project["roles"]))}</p></div></a>')
 
 
 def slides_for(project):
@@ -205,6 +215,7 @@ def slides_for(project):
 
 def project_html(project, eager=False):
     slug, title = text(project["slug"]), text(project["title"])
+    story = f'<p>{text(project["description"])}</p>' if project["description"] != project["overview"] else ""
     slides = slides_for(project)
     payload = json.dumps(slides, ensure_ascii=False).replace("<", "\\u003c")
     image = image_html(project["cover"], eager=eager, sizes=GALLERY_SIZES).replace("<img ", '<img class="gallery-image" ')
@@ -220,12 +231,12 @@ def project_html(project, eager=False):
     return f'''
       <article class="project-row" id="{slug}" aria-labelledby="title-{slug}">
         <div class="project-notes">
-          <h2 class="project-title" id="title-{slug}">{title}</h2>
+          <h2 class="project-title" id="title-{slug}" tabindex="-1">{title}</h2>
           <p class="project-overview">{text(project["overview"])}</p>
           <p class="project-roles">{text(" · ".join(project["roles"]))}</p>
           <details class="project-details">
             <summary><span class="more-label">Read more</span><span class="less-label">Read less</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
-            <div class="project-story"><p>{text(project["description"])}</p><p class="project-client">Client: {client}</p>{motion_link}</div>
+            <div class="project-story">{story}<p class="project-client">Client: {client}</p>{motion_link}</div>
           </details>
         </div>
         <section class="gallery" aria-label="{title} image gallery" aria-roledescription="carousel">
@@ -277,10 +288,12 @@ def build(publish=False):
         "STYLE_VERSION": hashlib.sha256((ROOT / "assets/styles.css").read_bytes()).hexdigest()[:12],
         "SITE_VERSION": hashlib.sha256((ROOT / "assets/site.js").read_bytes()).hexdigest()[:12],
         "GALLERY_VERSION": hashlib.sha256((ROOT / "assets/galleries.js").read_bytes()).hexdigest()[:12],
+        "INDEX_VERSION": hashlib.sha256((ROOT / "assets/project-index.js").read_bytes()).hexdigest()[:12],
         "CV_VERSION": hashlib.sha256((ROOT / "assets/Joey_Krieger_GraphicDesigner.pdf").read_bytes()).hexdigest()[:12],
         "ICON_VERSION": hashlib.sha256((ROOT / "assets/favicon.svg").read_bytes()).hexdigest()[:12],
         "SOCIAL_META": social_metadata(site, share_name),
-        "PROJECTS": "".join(project_html(project, eager=index == 0) for index, project in enumerate(data["projects"])),
+        "PROJECT_CARDS": "".join(project_card_html(project, eager=index == 0) for index, project in enumerate(data["projects"])),
+        "PROJECTS": "".join(project_html(project) for project in data["projects"]),
     }
     template = (ROOT / "templates/index.html").read_text()
     page = re.sub(r"@@([A-Z_]+)@@", lambda match: values[match[1]], template)
@@ -298,11 +311,11 @@ def build(publish=False):
             f'{canonical}<title>{text(project["title"])} — {text(site["name"])}</title>'
             f'</head><body><p><a href="{text(destination)}">View {text(project["title"])}</a></p></body></html>'
         )
-    for asset in ("styles.css", "site.js", "galleries.js", "favicon.svg", "favicon.png", "apple-touch-icon.png", "Joey_Krieger_GraphicDesigner.pdf"):
+    for asset in ("styles.css", "site.js", "galleries.js", "project-index.js", "favicon.svg", "favicon.png", "apple-touch-icon.png", "Joey_Krieger_GraphicDesigner.pdf"):
         shutil.copyfile(ROOT / "assets" / asset, OUT / asset)
     shutil.copyfile(ROOT / "assets/share-preview.png", OUT / share_name)
     (OUT / ".nojekyll").touch()
-    shell_bytes = sum((OUT / asset).stat().st_size for asset in ("index.html", "styles.css", "site.js", "galleries.js"))
+    shell_bytes = sum((OUT / asset).stat().st_size for asset in ("index.html", "styles.css", "site.js", "galleries.js", "project-index.js"))
     require(shell_bytes < 100_000, "HTML, CSS, and JavaScript exceed the 100 KB budget.")
     print(f'Built single-page portfolio: {OUT}')
     print(f'{len(data["projects"])} projects; HTML + CSS + JavaScript: {shell_bytes:,} bytes.')

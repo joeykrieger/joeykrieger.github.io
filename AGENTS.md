@@ -1,11 +1,13 @@
 # Portfolio maintenance
 
 Joey reviewed and authorized publishing the single-page redesign on October 5, 2026.
+Joey approved replacing it with the project grid and same-page galleries, including the revised ACG Holiday 2026 images 01–08, on November 8, 2026.
 
 - Edit content/portfolio.json and source files; never edit generated dist/ directly.
 - Preserve bold readable type, orange accents, the pinned desktop bio, single-page projects, and newest-year-first ordering.
 - Keep all artwork complete and uncropped in stable gallery frames. Preserve image originals and local optimized assets.
 - Preserve independent galleries, inline Read more, left/right image-half clicks, keyboard controls, and touch gestures. On desktop show each arrow only over its own half or on keyboard focus; keep touch arrows visible.
+- Keep the square-edged project grid. Project covers open their notes and gallery in the same document. Preserve Back to projects, Escape, browser history, hash links, and focus/scroll restoration.
 - Joey's portrait appears at the bottom of the desktop bio on name hover or keyboard focus, loads on demand, and stays clear of the text. Preserve the name's LinkedIn link.
 - Preserve existing project addresses under projects/ as redirects to homepage anchors.
 - Keep the site static and dependency-light. Warn Joey before adding anything with a meaningful performance cost.

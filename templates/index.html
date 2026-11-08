@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="./styles.css?v=@@STYLE_VERSION@@">
   <script src="./site.js?v=@@SITE_VERSION@@" defer></script>
   <script src="./galleries.js?v=@@GALLERY_VERSION@@" defer></script>
+  <script src="./project-index.js?v=@@INDEX_VERSION@@" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#work">Skip to work</a>
@@ -31,7 +32,13 @@
       </figure>
     </aside>
     <main id="work" aria-label="Selected work">
-      @@PROJECTS@@
+      <section class="project-index" id="projects" aria-label="Project overview">
+        <div class="project-grid">@@PROJECT_CARDS@@</div>
+      </section>
+      <section class="project-viewer" aria-label="Selected project">
+        <a class="index-return" href="#projects"><span class="return-chevron" aria-hidden="true"></span>Back to projects</a>
+        @@PROJECTS@@
+      </section>
       <footer id="contact" class="contact-footer">
         <h2>@@CONTACT_HEADING@@</h2>
         <a class="email-link" href="mailto:@@EMAIL@@">@@EMAIL@@</a>
